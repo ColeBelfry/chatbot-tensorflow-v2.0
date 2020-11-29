@@ -106,7 +106,7 @@ def chat():
                 tag = labels[results_index]
 
 
-                if results_index > 0.75:
+                if results_index > 0.7:
                     for tg in data["intents"]:
                         if tg["tag"] == tag:
                             responses = tg["responses"]
