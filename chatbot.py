@@ -94,15 +94,12 @@ def chat():
         print("Start talking with the bot (type quit to stop and retrain to train again)!")
         while True:
             inp = input("You: ")
-            if inp.lower() == "/quit":
+            if inp.lower() == "quit":
                 break
-            elif inp.lower() == "/retrain":
+            elif inp.lower() == "retrain":
                 train()
                 chat()
             else:
-                print(bag_of_words(inp, words))
-                print(len(bag_of_words(inp, words)))
-
                 results = model.predict([bag_of_words(inp, words)])
 
                 results_index = numpy.argmax(results)
