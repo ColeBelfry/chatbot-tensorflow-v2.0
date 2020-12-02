@@ -95,7 +95,7 @@ def chat():
     print("Start talking with the bot (type quit to stop and retrain to train again)!")
     while True:
         inp = input("You: ")
-            if inp.lower() == "/quit":
+        if inp.lower() == "/quit":
                 break
             elif inp.lower() == "/retrain":
                 train()
