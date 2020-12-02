@@ -96,8 +96,8 @@ def chat():
     while True:
         inp = input("You: ")
         if inp.lower() == "/quit":
-                break
-            elif inp.lower() == "/retrain":
+            break
+        elif inp.lower() == "/retrain":
                 train()
                 chat()
             else:
