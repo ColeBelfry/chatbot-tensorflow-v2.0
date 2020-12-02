@@ -98,19 +98,19 @@ def chat():
         if inp.lower() == "/quit":
             break
         elif inp.lower() == "/retrain":
-                train()
-                chat()
-            else:
-                results = model.predict([bag_of_words(inp, words)])
+            train()
+            chat()
+        else:
+            results = model.predict([bag_of_words(inp, words)])
 
-                results_index = numpy.argmax(results)
-                tag = labels[results_index]
+            results_index = numpy.argmax(results)
+            tag = labels[results_index]
                 
-                for tg in data["intents"]:
-                    if tg["tag"] == tag:b
-                        responses = tg["responses"]
+            for tg in data["intents"]:
+                if tg["tag"] == tag:b
+                    responses = tg["responses"]
 
-                print(f"{random.choice(responses)}   (Category: {tag})")
+            print(f"{random.choice(responses)}   (Category: {tag})")
 
 
 chat()
