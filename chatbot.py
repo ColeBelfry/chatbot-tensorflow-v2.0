@@ -107,10 +107,10 @@ def chat():
                 tag = labels[results_index]
                 
                 for tg in data["intents"]:
-                    if tg["tag"] == tag:
+                    if tg["tag"] == tag:b
                         responses = tg["responses"]
 
-                print(random.choice(responses))
+                print(f"{random.choice(responses)}   (Category: {tag})")
 
 
 chat()
