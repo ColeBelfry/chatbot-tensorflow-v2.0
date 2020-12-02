@@ -67,6 +67,7 @@ model = tf.keras.Sequential()
 model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]))))
 model.add(tf.keras.layers.Dense(8))
 model.add(tf.keras.layers.Dense(8))
+model.add(tf.keras.layers.Dense(8))
 model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
 
 def train():
@@ -104,15 +105,12 @@ def chat():
 
                 results_index = numpy.argmax(results)
                 tag = labels[results_index]
+                
+                for tg in data["intents"]:
+                    if tg["tag"] == tag:
+                        responses = tg["responses"]
 
+                print(random.choice(responses))
 
-                if results_index > 0.7:
-                    for tg in data["intents"]:
-                        if tg["tag"] == tag:
-                            responses = tg["responses"]
-
-                    print(random.choice(responses))
-                else:
-                    print("Please rephrase it")
 
 chat()
