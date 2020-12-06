@@ -5,5 +5,5 @@ It also saves wrong answers with predicted category
 
 Requirements
 
-NOTE: THERE CAN BE SOME PROBLEMS WITH THIS CHATBOT, PLEASE TEST IT AND IF YOU FIND ANY PROBLEM PLEASE LET ME KNOW THROUGH ANY OF SOCIAL MEDIA OR MAKE A PULL REQUEST
+NOTE: There can be some problems with this chatbot, please test it and if you find any problem please let me know through any of social media or make a pull request
 
