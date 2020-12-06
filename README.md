@@ -6,7 +6,7 @@ It also saves wrong answers with predicted category
 Requirements:<br>
 -Tensorflow 2.0 or higher<br>
 -Nltk<br>
-
+-
 
 NOTE: There can be some problems with this chatbot, please test it and if you find any problem please let me know through any of social media or make a pull request
 
