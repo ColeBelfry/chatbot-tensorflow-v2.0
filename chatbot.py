@@ -1,5 +1,6 @@
 import nltk
 #nltk.download('punkt')
+#run this command in python console to download punkt
 from nltk.stem.lancaster import LancasterStemmer
 stemmer = LancasterStemmer()
 
