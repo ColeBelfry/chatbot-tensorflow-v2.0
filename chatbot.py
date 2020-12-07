@@ -59,6 +59,8 @@ for x, doc in enumerate(docs_x):
 training = numpy.array(training)
 output = numpy.array(output)
 
+#----------------------------------------------------------------------
+#creatibg the neural net
 model = tf.keras.Sequential()
 
 model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]))))
@@ -66,6 +68,7 @@ model.add(tf.keras.layers.Dense(8))
 model.add(tf.keras.layers.Dense(8))
 model.add(tf.keras.layers.Dense(8))
 model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
+#----------------------------------------------------------------------
 
 def train():
     model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
