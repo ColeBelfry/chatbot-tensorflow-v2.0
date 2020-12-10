@@ -1,7 +1,6 @@
 
 #nltk.download('punkt')
 #run this command in python console to download punkt
-stemmer = LancasterStemmer()
 
 import numpy
 import tensorflow as tf
@@ -13,6 +12,8 @@ from nltk.stem.lancaster import LancasterStemmer
 
 with open("intents.json") as file:
     data = json.load(file)
+
+stemmer = LancasterStemmer()    
     
 words = []
 labels = []
