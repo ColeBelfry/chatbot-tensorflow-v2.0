@@ -9,6 +9,8 @@ import tensorflow as tf
 from tensorflow import keras 
 import random
 import json
+import nltk
+from nltk.stem.lancaster import LancasterStemmer
 
 with open("intents.json") as file:
     data = json.load(file)
