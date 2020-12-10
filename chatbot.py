@@ -128,7 +128,7 @@ def chat():
                                 with open('exceptions.txt', 'a') as f:
                                     f.write(f'{inp}  (Predicted category: {tag})\n')
                     except:
-                        file = open('exception.txt', 'x'):
+                        file = open('exceptions.txt', 'x'):
                         with open('exception.txt') as f:
                             if inp not in f.read():
                                 with open('exception.txt', 'a') as f:
