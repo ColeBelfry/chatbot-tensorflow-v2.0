@@ -133,13 +133,15 @@ def chat():
                             if inp not in f.read():
                                 with open('exception.txt', 'a') as f:
                                     f.write(f'{inp}  (Predicted category: {tag})\n')
+                                    
+chat()                
                        
          
 
 
-                    
+                  
                                 
-chat()
+
 
 
 
