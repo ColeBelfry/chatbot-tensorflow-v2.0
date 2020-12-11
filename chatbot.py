@@ -137,24 +137,3 @@ def chat():
                                     f.write(f'{inp}  (Predicted category: {tag})\n')
                                     
 chat()                
-                       
-         
-
-
-                  
-                                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
