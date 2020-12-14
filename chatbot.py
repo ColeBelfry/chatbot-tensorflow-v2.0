@@ -1,4 +1,3 @@
-
 #nltk.download('punkt')
 #run this command in python console to download punkt
 
