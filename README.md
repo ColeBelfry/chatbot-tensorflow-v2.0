@@ -8,5 +8,5 @@ Requirements:<br>
 -Nltk<br>
 -Punkt from nltk &nbsp;&nbsp;&nbsp;&nbsp; (nltk.download('punkt'))
 
-NOTE: There can be some problems with this chatbot, please test it and if you find any problem please let me know through any of social media or make a pull request
+NOTE: This .json dataset is taken from the internet
 
