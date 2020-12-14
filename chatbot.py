@@ -136,4 +136,5 @@ def chat():
                                 with open('exceptions.txt', 'a') as f:
                                     f.write(f'{inp}  (Predicted category: {tag}, accuracy: {results[results_index]})\n')
                                     
+                                    
 chat()                
