@@ -134,6 +134,6 @@ def chat():
                         with open('exceptions.txt') as f:
                             if inp not in f.read():
                                 with open('exceptions.txt', 'a') as f:
-                                    f.write(f'{inp}  (Predicted category: {tag})\n')
+                                    f.write(f'{inp}  (Predicted category: {tag}, accuracy: {results[results_index]})\n')
                                     
 chat()                
