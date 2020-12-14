@@ -71,9 +71,8 @@ output = numpy.array(output)
 model = tf.keras.Sequential()
 
 model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]))))
-model.add(tf.keras.layers.Dense(8))
-model.add(tf.keras.layers.Dense(8))
-model.add(tf.keras.layers.Dense(8))
+model.add(tf.keras.layers.Dense(64, activation="relu"))
+model.add(tf.keras.layers.Dense(64, activation="relu"))
 model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
 
 #run this command to get the summary of the model
