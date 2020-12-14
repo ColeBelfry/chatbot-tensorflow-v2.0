@@ -8,5 +8,5 @@ Requirements:<br>
 -Nltk<br>
 -Punkt from nltk &nbsp;&nbsp;&nbsp;&nbsp; (nltk.download('punkt'))
 
-NOTE: This .json dataset is taken from the internet
+NOTE: This .json dataset is taken from the internet, credits to the creator
 
