@@ -27,14 +27,14 @@ for intent in data["intents"]:
         wrds = nltk.word_tokenize(pattern)	        
         words.extend(wrds)
         docs_x.append(wrds)	        
-        docs_y.append(intent["tag"])	        docs_y.append(intent["tag"])
-    if intent["tag"] not in labels:	    if intent["tag"] not in labels:
-        labels.append(intent["tag"])	        labels.append(intent["tag"])
-words = [stemmer.stem(w.lower()) for w in words if w != ("?" or "!")]	words = [stemmer.stem(w.lower()) for w in words if w != ("?" or "!")]
-words = sorted(list(set(words)))	words = sorted(list(set(words)))
-labels = sorted(labels)	labels = sorted(labels)
-training = []	training = []
-output = []	output = []
+        docs_y.append(intent["tag"])	       
+    if intent["tag"] not in labels:	    
+        labels.append(intent["tag"])
+words = [stemmer.stem(w.lower()) for w in words if w != ("?" or "!")]
+words = sorted(list(set(words)))	
+labels = sorted(labels)
+training = []	
+output = []	
 out_empty = [0 for _ in range(len(labels))]	out_empty = [0 for _ in range(len(labels))]
 for x, doc in enumerate(docs_x):	for x, doc in enumerate(docs_x):
     bag = []	    bag = []
