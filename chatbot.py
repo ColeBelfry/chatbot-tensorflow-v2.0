@@ -100,20 +100,20 @@ def chat():	def chat():
                     for tg in data["intents"]:	                    for tg in data["intents"]:
                         if tg["tag"] == tag:	                        if tg["tag"] == tag:
                             responses = tg["responses"]	                            responses = tg["responses"]
-                    print(f"{random.choice(responses)}   (Category: {tag})")	                    print(f"{random.choice(responses)}   (Category: {tag})")
+                    print(f"{random.choice(responses)}   (Category: {tag})")	                    
                 else:	                else:
-                    print("Please rephrase it!") 	                    print("Please rephrase it!") 
+                    print("Please rephrase it!")
                     try:	                    try:
-                        with open('exceptions.txt') as f:	                        with open('exceptions.txt') as f:
-                            if inp not in f.read():	                            if inp not in f.read():
-                                with open('exceptions.txt', 'a') as f:	                                with open('exceptions.txt', 'a') as f:
-                                    f.write(f'{inp}  (Predicted category: {tag})\n')	                                    f.write(f'{inp}  (Predicted category: {tag})\n')
+                        with open('exceptions.txt') as f:	                        
+                            if inp not in f.read():	                            
+                                with open('exceptions.txt', 'a') as f:	                             
+                                    f.write(f'{inp}  (Predicted category: {tag})\n')	                                
                     except:	                    except:
-                        file = open('exceptions.txt', 'x'):	                        file = open('exceptions.txt', 'x'):
-                        with open('exceptions.txt') as f:	                        with open('exceptions.txt') as f:
-                            if inp not in f.read():	                            if inp not in f.read():
-                                with open('exceptions.txt', 'a') as f:	                                with open('exceptions.txt', 'a') as f:
-                                    f.write(f'{inp}  (Predicted category: {tag})\n')	                                    f.write(f'{inp}  (Predicted category: {tag}, accuracy: {results[results_index]})\n')
+                        file = open('exceptions.txt', 'x'):	                        
+                        with open('exceptions.txt') as f:	                        
+                            if inp not in f.read():	                            
+                                with open('exceptions.txt', 'a') as f:	                            
+                                    f.write(f'{inp}  (Predicted category: {tag})\n')
 
 
-chat()                	chat()
+chat()                	
