@@ -8,25 +8,25 @@
 #run this command in python console to download punkt
 
 import numpy
-import tensorflow as tf	import tensorflow as tf
-from tensorflow import keras 	from tensorflow import keras 
-import random	import random
-import json	import json
-import nltk	import nltk
-from nltk.stem.lancaster import LancasterStemmer	from nltk.stem.lancaster import LancasterStemmer
-with open("intents.json") as file:	with open("intents.json") as file:
-    data = json.load(file)	    data = json.load(file)
-stemmer = LancasterStemmer()    	stemmer = LancasterStemmer()    
+import tensorflow as tf	
+from tensorflow import keras 	
+import random	
+import json	
+import nltk
+from nltk.stem.lancaster import LancasterStemmer	 
+with open("intents.json") as file:	
+    data = json.load(file)	    
+stemmer = LancasterStemmer()
     	    
-words = []	words = []
-labels = []	labels = []
-docs_x = []	docs_x = []
-docs_y = []	docs_y = []
-for intent in data["intents"]:	for intent in data["intents"]:
-    for pattern in intent["patterns"]:	    for pattern in intent["patterns"]:
-        wrds = nltk.word_tokenize(pattern)	        wrds = nltk.word_tokenize(pattern)
-        words.extend(wrds)	        words.extend(wrds)
-        docs_x.append(wrds)	        docs_x.append(wrds)
+words = []
+labels = []	
+docs_x = []
+docs_y = []	
+for intent in data["intents"]:
+    for pattern in intent["patterns"]:	    
+        wrds = nltk.word_tokenize(pattern)	        
+        words.extend(wrds)
+        docs_x.append(wrds)	        
         docs_y.append(intent["tag"])	        docs_y.append(intent["tag"])
     if intent["tag"] not in labels:	    if intent["tag"] not in labels:
         labels.append(intent["tag"])	        labels.append(intent["tag"])
