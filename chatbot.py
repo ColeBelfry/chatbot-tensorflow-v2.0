@@ -46,21 +46,30 @@ out_empty = [0 for _ in range(len(labels))]
 
 for x, doc in enumerate(docs_x):	
     bag = []	   
-    wrds = [stemmer.stem(w.lower()) for w in doc]	   
+    wrds = [stemmer.stem(w.lower()) for w in doc]	
+    
     for w in words:	    
         if w in wrds:	        
             bag.append(1)	            
         else:	       
-            bag.append(0)	            
+            bag.append(0)	
+            
     output_row = out_empty[:]	    
-    output_row[labels.index(docs_y[x])] = 1	    
+    output_row[labels.index(docs_y[x])] = 1	 
+    
     training.append(bag)	 
-    output.append(output_row)	    
+    output.append(output_row)	
+    
+    
 training = numpy.array(training)
 output = numpy.array(output)	
+
 #----------------------------------------------------------------------	
+
 #creating the neural net	
+
 model = tf.keras.Sequential()	
+
 model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]))))	
 model.add(tf.keras.layers.Dense(8))	
 model.add(tf.keras.layers.Dense(8))
