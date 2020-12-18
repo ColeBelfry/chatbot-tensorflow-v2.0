@@ -13,29 +13,37 @@ from tensorflow import keras
 import random	
 import json	
 import nltk
-from nltk.stem.lancaster import LancasterStemmer	 
+from nltk.stem.lancaster import LancasterStemmer	
+
 with open("intents.json") as file:	
-    data = json.load(file)	    
+    data = json.load(file)	  
+    
 stemmer = LancasterStemmer()
     	    
 words = []
 labels = []	
 docs_x = []
 docs_y = []	
+
 for intent in data["intents"]:
     for pattern in intent["patterns"]:	    
         wrds = nltk.word_tokenize(pattern)	        
         words.extend(wrds)
         docs_x.append(wrds)	        
-        docs_y.append(intent["tag"])	       
+        docs_y.append(intent["tag"])
+        
     if intent["tag"] not in labels:	    
         labels.append(intent["tag"])
+        
 words = [stemmer.stem(w.lower()) for w in words if w != ("?" or "!")]
 words = sorted(list(set(words)))	
 labels = sorted(labels)
+
 training = []	
 output = []	
+
 out_empty = [0 for _ in range(len(labels))]	
+
 for x, doc in enumerate(docs_x):	
     bag = []	   
     wrds = [stemmer.stem(w.lower()) for w in doc]	   
