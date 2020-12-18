@@ -35,47 +35,47 @@ words = sorted(list(set(words)))
 labels = sorted(labels)
 training = []	
 output = []	
-out_empty = [0 for _ in range(len(labels))]	out_empty = [0 for _ in range(len(labels))]
-for x, doc in enumerate(docs_x):	for x, doc in enumerate(docs_x):
-    bag = []	    bag = []
-    wrds = [stemmer.stem(w.lower()) for w in doc]	    wrds = [stemmer.stem(w.lower()) for w in doc]
-    for w in words:	    for w in words:
-        if w in wrds:	        if w in wrds:
-            bag.append(1)	            bag.append(1)
-        else:	        else:
-            bag.append(0)	            bag.append(0)
-    output_row = out_empty[:]	    output_row = out_empty[:]
-    output_row[labels.index(docs_y[x])] = 1	    output_row[labels.index(docs_y[x])] = 1
-    training.append(bag)	    training.append(bag)
-    output.append(output_row)	    output.append(output_row)
-training = numpy.array(training)	training = numpy.array(training)
-output = numpy.array(output)	output = numpy.array(output)
-#----------------------------------------------------------------------	#----------------------------------------------------------------------
-#creating the neural net	#creating the neural net
-model = tf.keras.Sequential()	model = tf.keras.Sequential()
-model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]))))	model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]))))
-model.add(tf.keras.layers.Dense(8))	model.add(tf.keras.layers.Dense(8))
-model.add(tf.keras.layers.Dense(8))	model.add(tf.keras.layers.Dense(8))
-model.add(tf.keras.layers.Dense(8))	model.add(tf.keras.layers.Dense(8))
-model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))	model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
-#run this command to get the summary of the model	#run this command to get the summary of the model
-#model.summary()	#model.summary()
-#----------------------------------------------------------------------	#----------------------------------------------------------------------
-def train():	def train():
-    model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])	    model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
-    model.fit(training, output, epochs=500, batch_size=256)	    model.fit(training, output, epochs=500, batch_size=256)
-    model.save('model.h5')	    model.save('model.h5')
-try:	try:
-    model = keras.models.load_model('model.h5')	    model = keras.models.load_model('model.h5')
-except:	except:
-    train()	    train()
+out_empty = [0 for _ in range(len(labels))]	
+for x, doc in enumerate(docs_x):	
+    bag = []	   
+    wrds = [stemmer.stem(w.lower()) for w in doc]	   
+    for w in words:	    
+        if w in wrds:	        
+            bag.append(1)	            
+        else:	       
+            bag.append(0)	            
+    output_row = out_empty[:]	    
+    output_row[labels.index(docs_y[x])] = 1	    
+    training.append(bag)	 
+    output.append(output_row)	    
+training = numpy.array(training)
+output = numpy.array(output)	
+#----------------------------------------------------------------------	
+#creating the neural net	
+model = tf.keras.Sequential()	
+model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]))))	
+model.add(tf.keras.layers.Dense(8))	
+model.add(tf.keras.layers.Dense(8))
+model.add(tf.keras.layers.Dense(8))	
+model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
+#run this command to get the summary of the model	
+#model.summary()	
+#----------------------------------------------------------------------	
+def train():	
+    model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])	  
+    model.fit(training, output, epochs=500, batch_size=256)	  
+    model.save('model.h5')	  
+try:	
+    model = keras.models.load_model('model.h5')	   
+except:	
+    train()	    
     	    
-def bag_of_words(s, words):	def bag_of_words(s, words):
-    bag = [0 for _ in range(len(words))]	    bag = [0 for _ in range(len(words))]
-    s_words = nltk.word_tokenize(s)	    s_words = nltk.word_tokenize(s)
-    s_words = [stemmer.stem(word.lower()) for word in s_words]	    s_words = [stemmer.stem(word.lower()) for word in s_words]
-    for se in s_words:	    for se in s_words:
-        for i, w in enumerate(words):	        for i,
+def bag_of_words(s, words):	
+    bag = [0 for _ in range(len(words))]	    
+    s_words = nltk.word_tokenize(s)	    
+    s_words = [stemmer.stem(word.lower()) for word in s_words]	    
+    for se in s_words:	  
+        for i, w in enumerate(words):	       
             if w == se:	       
                 bag[i] = 1	                
                 	                
