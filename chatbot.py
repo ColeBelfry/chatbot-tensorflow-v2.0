@@ -107,13 +107,16 @@ def bag_of_words(s, words):
 def chat():	
         print("Start talking with the bot (type quit to stop and retrain to train again)!")	       
         while True:	       
-            inp = input("You: ")	          
+            inp = input("You: ")	
+            
             if inp.lower() == "/quit":	            
                 break	             
-                exit()	             
+                exit()	 
+                
             elif inp.lower() == "/retrain":	          
                 train()	               
-                chat()	               
+                chat()	 
+                
             else:	            
                 results = model.predict([bag_of_words(inp, words)])[0]	                
                	               
@@ -123,16 +126,17 @@ def chat():
                     for tg in data["intents"]:	                  
                         if tg["tag"] == tag:	                      
                             responses = tg["responses"]	                            
-                    print(f"{random.choice(responses)}   (Category: {tag})")	                    
+                    print(f"{random.choice(responses)}   (Category: {tag})")
+                    
                 else:	                
                     print("Please rephrase it!")
-                    try:	                    try:
+                    try:	                    
                         with open('exceptions.txt') as f:	                        
                             if inp not in f.read():	                            
                                 with open('exceptions.txt', 'a') as f:	                             
                                     f.write(f'{inp}  (Predicted category: {tag})\n')	                                
                     except:	                  
-                        file = open('exceptions.txt', 'x'):	                        
+                        file = open('exceptions.txt', 'x')                        
                         with open('exceptions.txt') as f:	                        
                             if inp not in f.read():	                            
                                 with open('exceptions.txt', 'a') as f:	                            
