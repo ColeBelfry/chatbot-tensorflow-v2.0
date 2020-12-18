@@ -75,40 +75,40 @@ def bag_of_words(s, words):	def bag_of_words(s, words):
     s_words = nltk.word_tokenize(s)	    s_words = nltk.word_tokenize(s)
     s_words = [stemmer.stem(word.lower()) for word in s_words]	    s_words = [stemmer.stem(word.lower()) for word in s_words]
     for se in s_words:	    for se in s_words:
-        for i, w in enumerate(words):	        for i, w in enumerate(words):
-            if w == se:	            if w == se:
-                bag[i] = 1	                bag[i] = 1
+        for i, w in enumerate(words):	        for i,
+            if w == se:	       
+                bag[i] = 1	                
                 	                
-    return numpy.array([bag])	    return numpy.array([bag])
+    return numpy.array([bag])	  
   	  
-def chat():	def chat():
-        print("Start talking with the bot (type quit to stop and retrain to train again)!")	        print("Start talking with the bot (type quit to stop and retrain to train again)!")
-        while True:	        while True:
-            inp = input("You: ")	            inp = input("You: ")
-            if inp.lower() == "/quit":	            if inp.lower() == "/quit":
-                break	                break
-                exit()	                exit()
-            elif inp.lower() == "/retrain":	            elif inp.lower() == "/retrain":
-                train()	                train()
-                chat()	                chat()
-            else:	            else:
-                results = model.predict([bag_of_words(inp, words)])[0]	                results = model.predict([bag_of_words(inp, words)])[0]
+def chat():	
+        print("Start talking with the bot (type quit to stop and retrain to train again)!")	       
+        while True:	       
+            inp = input("You: ")	          
+            if inp.lower() == "/quit":	            
+                break	             
+                exit()	             
+            elif inp.lower() == "/retrain":	          
+                train()	               
+                chat()	               
+            else:	            
+                results = model.predict([bag_of_words(inp, words)])[0]	                
                	               
-                results_index = numpy.argmax(results)	                results_index = numpy.argmax(results)
-                tag = labels[results_index]	                tag = labels[results_index]
-                if results[results_index] > 0.9:	                if results[results_index] > 0.9:
-                    for tg in data["intents"]:	                    for tg in data["intents"]:
-                        if tg["tag"] == tag:	                        if tg["tag"] == tag:
-                            responses = tg["responses"]	                            responses = tg["responses"]
+                results_index = numpy.argmax(results)	                
+                tag = labels[results_index]	                
+                if results[results_index] > 0.9:	               
+                    for tg in data["intents"]:	                  
+                        if tg["tag"] == tag:	                      
+                            responses = tg["responses"]	                            
                     print(f"{random.choice(responses)}   (Category: {tag})")	                    
-                else:	                else:
+                else:	                
                     print("Please rephrase it!")
                     try:	                    try:
                         with open('exceptions.txt') as f:	                        
                             if inp not in f.read():	                            
                                 with open('exceptions.txt', 'a') as f:	                             
                                     f.write(f'{inp}  (Predicted category: {tag})\n')	                                
-                    except:	                    except:
+                    except:	                  
                         file = open('exceptions.txt', 'x'):	                        
                         with open('exceptions.txt') as f:	                        
                             if inp not in f.read():	                            
