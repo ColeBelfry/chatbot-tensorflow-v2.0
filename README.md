@@ -1,6 +1,6 @@
 # chatbot-tensorflow-v2.0
 
-This is a chatbot which works with tensorflow 2.2 and higher. I have tested it on tensorflow 2.3.0<br>
+This is a chatbot which works with tensorflow 2.1 and higher. I have tested it on tensorflow 2.3.0 and 2.1.0<br>
 It also saves wrong answers with predicted category in a text file named as 'exceptions.txt'
 
 Requirements:<br>
