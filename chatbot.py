@@ -30,7 +30,7 @@ for intent in data["intents"]:
         wrds = nltk.word_tokenize(pattern)
         words.extend(wrds)
         docs_x.append(wrds)
-        docs_y.append(intent["tag"])
+        docs_y.append(intent["intent"])
 
     if intent["intent"] not in labels:
         labels.append(intent["intent"])
@@ -126,12 +126,12 @@ def chat():
             results = model.predict([bag_of_words(inp, words)])[0]
 
             results_index = numpy.argmax(results)
-            tag = labels[results_index]
+            intent = labels[results_index]
             if results[results_index] > 0.9:
                 for tg in data["intents"]:
-                    if tg["tag"] == tag:
+                    if tg["intent"] == intent:
                         responses = tg["responses"]
-                print(f"{random.choice(responses)}   (Category: {tag})")
+                print(f"{random.choice(responses)}   (Category: {intent})")
 
             else:
                 print("Please rephrase it!")
@@ -140,14 +140,14 @@ def chat():
                         if inp not in f.read():
                             with open('exceptions.txt', 'a') as f:
                                 f.write(
-                                    f'{inp}  (Predicted category: {tag})\n')
+                                    f'{inp}  (Predicted category: {intent})\n')
                 except:
                     file = open('exceptions.txt', 'x')
                     with open('exceptions.txt') as f:
                         if inp not in f.read():
                             with open('exceptions.txt', 'a') as f:
                                 f.write(
-                                    f'{inp}  (Predicted category: {tag})\n')
+                                    f'{inp}  (Predicted category: {intent})\n')
 
 
 chat()
