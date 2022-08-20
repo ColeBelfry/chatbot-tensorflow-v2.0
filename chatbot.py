@@ -68,31 +68,45 @@ output = numpy.array(output)
 
 # creating the neural net
 
-model = tf.keras.Sequential()
+def createNewModel(name, num_epochs, batch_size_val, learning_rate_val, hidden_layers):
+    model = tf.keras.Sequential()
+    model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]))))
+    #I might remove this depending on if we can transfer an array or not from UI
+    for layer in hidden_layers:
+        if layer.type == "dense":
+            model.add(tf.keras.layers.Dense(8))
+        elif layer.type == "flatten":
+            model.add(tf.keras.layers.Flatten())
+    model.add(tf.keras.layers.Dense(8))
+    model.add(tf.keras.layers.Dense(8))
+    model.add(tf.keras.layers.Dense(8))
+    model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
 
-model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]))))
-model.add(tf.keras.layers.Dense(8))
-model.add(tf.keras.layers.Dense(8))
-model.add(tf.keras.layers.Dense(8))
-model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
-
-# run this command to get the summary of the model
-# model.summary()
+    train(model, name, num_epochs, batch_size_val, learning_rate_val)
+    # run this command to get the summary of the model
+    # model.summary()
 
 # ----------------------------------------------------------------------
 
-
-def train():
-    model.compile(optimizer="adam",
+#epoch = 10000  batch size = 1000 optimiser = "adam"
+def train(model, name, num_epochs, batch_size_val, learning_rate_val):
+    #sets the learning rate for the adam optimizer
+    opt = keras.optimizers.Adam(learning_rate = learning_rate_val)
+    model.compile(optimizer=opt,
                   loss="categorical_crossentropy", metrics=["accuracy"])
-    model.fit(training, output, epochs=10000, batch_size=1000)
-    model.save('model.h5')
+    model.fit(training, output, epochs=num_epochs, batch_size=batch_size_val)
+    model.save('KerasModels\\' + name + '.h5')
 
+def loadModel(model_name):
+    try:
+        model = keras.models.load_model('KerasModels\\' + model_name + '.h5')
+        return model
+    except:
+        #model not found exception
+        train()
 
-try:
-    model = keras.models.load_model('model.h5')
-except:
-    train()
+#The current active model (pass in the name from the UI)
+current_model = loadModel(current_model_name)
 
 
 def bag_of_words(s, words):
@@ -123,7 +137,7 @@ def chat():
             chat()
 
         else:
-            results = model.predict([bag_of_words(inp, words)])[0]
+            results = current_model.predict([bag_of_words(inp, words)])[0]
 
             results_index = numpy.argmax(results)
             intent = labels[results_index]
