@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cbelfry\\Source\\Repos\\chatbot-tensorflow-v2.0\\chatbot website\\chatbot website.csproj": {}
+    "C:\\Users\\JBaker\\Documents\\GitHub\\chatbot-tensorflow-v2.0\\chatbot website\\chatbot website.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cbelfry\\Source\\Repos\\chatbot-tensorflow-v2.0\\chatbot website\\chatbot website.csproj": {
+    "C:\\Users\\JBaker\\Documents\\GitHub\\chatbot-tensorflow-v2.0\\chatbot website\\chatbot website.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cbelfry\\Source\\Repos\\chatbot-tensorflow-v2.0\\chatbot website\\chatbot website.csproj",
+        "projectUniqueName": "C:\\Users\\JBaker\\Documents\\GitHub\\chatbot-tensorflow-v2.0\\chatbot website\\chatbot website.csproj",
         "projectName": "chatbot website",
-        "projectPath": "C:\\Users\\cbelfry\\Source\\Repos\\chatbot-tensorflow-v2.0\\chatbot website\\chatbot website.csproj",
-        "packagesPath": "C:\\Users\\cbelfry\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cbelfry\\Source\\Repos\\chatbot-tensorflow-v2.0\\chatbot website\\obj\\",
+        "projectPath": "C:\\Users\\JBaker\\Documents\\GitHub\\chatbot-tensorflow-v2.0\\chatbot website\\chatbot website.csproj",
+        "packagesPath": "C:\\Users\\JBaker\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JBaker\\Documents\\GitHub\\chatbot-tensorflow-v2.0\\chatbot website\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\cbelfry\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JBaker\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

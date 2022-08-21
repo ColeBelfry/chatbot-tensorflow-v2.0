@@ -164,4 +164,3 @@ def chat():
                                     f'{inp}  (Predicted category: {intent})\n')
 
 
-chat()
