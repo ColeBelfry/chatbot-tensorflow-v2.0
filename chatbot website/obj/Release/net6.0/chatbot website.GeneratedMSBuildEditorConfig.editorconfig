@@ -15,18 +15,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/cbelfry/source/repos/chatbot-tensorflow-v2.0/chatbot website/Views/Chat/ChatWindow.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxDaGF0V2luZG93LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/cbelfry/source/repos/chatbot-tensorflow-v2.0/chatbot website/Views/Chat/NewIntent.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxOZXdJbnRlbnQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/cbelfry/source/repos/chatbot-tensorflow-v2.0/chatbot website/Views/Chat/NewModel.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxOZXdNb2RlbC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/cbelfry/source/repos/chatbot-tensorflow-v2.0/chatbot website/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

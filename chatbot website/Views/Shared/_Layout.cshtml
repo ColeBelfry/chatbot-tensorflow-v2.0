@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">chatbot_website</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -30,8 +30,26 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div>
+        <main role="main" class="d-flex flex-nowrap">
+            <div class="navbar d-flex flex-column flex-shrink-0 main_bg_color p-3">
+                <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+                    <li class="nav-item">
+                        <a href="" class="nav-link py-3 border-bottom rounded-0">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <h5 class="mb-1">Create New Chat Bot</h5>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link py-3 border-bottom rounded-0">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <h5>Create New Intent</h5>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
             @RenderBody()
         </main>
     </div>

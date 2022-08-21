@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "w6v3LZO2BxCoA3iOp6M053l+UeM8jKDFeZ/v6mwTuVZaegZtW5SK7Qcu7g7x/bW46zOyjCXcvAMAQxFau7HuaQ==",
+  "dgSpecHash": "x32eWvwjfF+IZ1jXo/8F9P/ITBFPTIhFvlwu1FOh5rLE3BdohFIxnMXanRmonBKo+4p8fAjPIw30sZQXatAr0A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\cbelfry\\Source\\Repos\\chatbot-tensorflow-v2.0\\chatbot website\\chatbot website.csproj",
+  "projectFilePath": "C:\\Users\\cbelfry\\source\\repos\\chatbot-tensorflow-v2.0\\chatbot website\\chatbot website.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

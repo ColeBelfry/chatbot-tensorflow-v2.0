@@ -1,0 +1,7 @@
+shutup  (Predicted category: Shutup)
+I own you  (Predicted category: WhoAmI)
+stupid ass  (Predicted category: Shutup)
+are you sentient  (Predicted category: CourtesyGreeting)
+you are not real  (Predicted category: CourtesyGreeting)
+I love poop  (Predicted category: GreetingResponse)
+what are you doing?  (Predicted category: NameQuery)

@@ -70,7 +70,7 @@ output = numpy.array(output)
 
 def createNewModel(name, num_epochs, batch_size_val, learning_rate_val, hidden_layers):
     model = tf.keras.Sequential()
-    model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]))))
+    model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]),)))
     #I might remove this depending on if we can transfer an array or not from UI
     for layer in hidden_layers:
         if layer.type == "dense":
@@ -106,7 +106,7 @@ def loadModel(model_name):
         train()
 
 #The current active model (pass in the name from the UI)
-current_model = loadModel(current_model_name)
+current_model = loadModel("model")
 
 
 def bag_of_words(s, words):
