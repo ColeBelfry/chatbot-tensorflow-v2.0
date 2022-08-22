@@ -73,9 +73,9 @@ def createNewModel(name, num_epochs, batch_size_val, learning_rate_val, hidden_l
     model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]),)))
     #I might remove this depending on if we can transfer an array or not from UI
     for layer in hidden_layers:
-        if layer.type == "dense":
+        if layer == "dense":
             model.add(tf.keras.layers.Dense(8))
-        elif layer.type == "flatten":
+        elif layer == "flatten":
             model.add(tf.keras.layers.Flatten())
     model.add(tf.keras.layers.Dense(8))
     model.add(tf.keras.layers.Dense(8))
@@ -87,8 +87,7 @@ def createNewModel(name, num_epochs, batch_size_val, learning_rate_val, hidden_l
     # model.summary()
 
 # ----------------------------------------------------------------------
-
-#epoch = 10000  batch size = 1000 optimiser = "adam"
+#epoch = 1000  batch size = 100 optimiser = "adam" learning_rate = 0.001
 def train(model, name, num_epochs, batch_size_val, learning_rate_val):
     #sets the learning rate for the adam optimizer
     opt = keras.optimizers.Adam(learning_rate = learning_rate_val)
@@ -103,10 +102,14 @@ def loadModel(model_name):
         return model
     except:
         #model not found exception
-        train()
+        print("model: " + model_name + " could not be found")
 
+#This is a test to make a new model
+hiddenlayers = ["dense", "dense", "dense"]
+createNewModel("bob", 500, 50, 0.001, hiddenlayers)
 #The current active model (pass in the name from the UI)
-current_model = loadModel("model")
+current_model = loadModel("bob")
+#weights = current_model.get_weights()
 
 
 def bag_of_words(s, words):

@@ -18,9 +18,12 @@ body {
 }
 
 sidebar {
-    width: 280px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding-top: 48px;
 }
 
-main_bg_color{
-    background-color: black;
+main_bg_color {
+    background-color: #2d2d2d;
 }

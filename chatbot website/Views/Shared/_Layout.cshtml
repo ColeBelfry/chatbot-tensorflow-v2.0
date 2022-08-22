@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - chatbot_website</title>
+    <title>chatbot_website</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/chatbot_website.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
+    <header class="mb-auto">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">chatbot_website</a>
@@ -30,32 +30,11 @@
             </div>
         </nav>
     </header>
-    <div>
-        <main role="main" class="d-flex flex-nowrap">
-            <div class="navbar d-flex flex-column flex-shrink-0 main_bg_color p-3">
-                <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-                    <li class="nav-item">
-                        <a href="" class="nav-link py-3 border-bottom rounded-0">
-                            <div class="d-flex w-100 align-items-center justify-content-between">
-                                <h5 class="mb-1">Create New Chat Bot</h5>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link py-3 border-bottom rounded-0">
-                            <div class="d-flex w-100 align-items-center justify-content-between">
-                                <h5>Create New Intent</h5>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            @RenderBody()
-        </main>
+    <div class="row">
+        @RenderBody()
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
+    <footer class="border-top footer text-muted mt-auto">
+        <div class="container mt-auto">
             &copy; 2022 - chatbot_website - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>

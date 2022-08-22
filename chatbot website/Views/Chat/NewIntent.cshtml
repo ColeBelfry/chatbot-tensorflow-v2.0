@@ -5,6 +5,8 @@
     // add the model
 }
 
+@Html.Partial("_Sidebar")
+
 <div class="container">
     <form id="new_intent" action="AddIntent" method="post"></form>
     <form id="new_pattern" action="NewPattern" method="post"></form>
@@ -40,12 +42,12 @@
                     <p>"@response",</p>
                 }
                 ],
+            </div>
             <div class="col-12">
                 <label class="form-label" for="iIntent">New Intent:</label>
                 <input name="batch_size" type="text" class="form-control" id="iIntent" form="NewIntent" required />
                 <input type="submit" form="NewIntent" />
             </div>
         </div>
-    </div>
-    
+    </div>    
 </div>
