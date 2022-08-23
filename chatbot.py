@@ -15,6 +15,8 @@ import json
 import nltk
 from nltk.stem.lancaster import LancasterStemmer
 
+invalid_responses = ["Please rephrase that.", "That is weird, I do not recognize that.", "Try again later.", "Could not come up with a response, try again."]
+
 with open("intent.json") as file:
     data = json.load(file)
 
@@ -123,44 +125,22 @@ def bag_of_words(s, words):
     return numpy.array([bag])
 
 
-def chat():
-    print("Start talking with the bot (type /quit to stop and /retrain to train again)!")
-    while True:
-        inp = input("You: ")
+def chat(model_name, user_input):
+    try:
+        model = keras.models.load_model('KerasModels\\' + model_name + '.h5')
+    except:
+        return "A problem was encountered when loading the model, make sure you have created one first."
 
-        if inp.lower() == "/quit":
-            break
-            exit()
+    results = model.predict([bag_of_words(user_input, words)])[0]
 
-        elif inp.lower() == "/retrain":
-            train()
-            chat()
-
-        else:
-            results = current_model.predict([bag_of_words(inp, words)])[0]
-
-            results_index = numpy.argmax(results)
-            intent = labels[results_index]
-            if results[results_index] > 0.9:
-                for tg in data["intents"]:
-                    if tg["intent"] == intent:
-                        responses = tg["responses"]
-                print(f"{random.choice(responses)}   (Category: {intent})")
-
-            else:
-                print("Please rephrase it!")
-                try:
-                    with open('exceptions.txt') as f:
-                        if inp not in f.read():
-                            with open('exceptions.txt', 'a') as f:
-                                f.write(
-                                    f'{inp}  (Predicted category: {intent})\n')
-                except:
-                    file = open('exceptions.txt', 'x')
-                    with open('exceptions.txt') as f:
-                        if inp not in f.read():
-                            with open('exceptions.txt', 'a') as f:
-                                f.write(
-                                    f'{inp}  (Predicted category: {intent})\n')
+    results_index = numpy.argmax(results)
+    intent = labels[results_index]
+    if results[results_index] > 0.9:
+        for tg in data["intents"]:
+            if tg["intent"] == intent:
+                responses = tg["responses"]
+        return f"{random.choice(responses)}   (Category: {intent})"
+    else:
+        return f"{random.choice(invalid_responses)}"
 
 
