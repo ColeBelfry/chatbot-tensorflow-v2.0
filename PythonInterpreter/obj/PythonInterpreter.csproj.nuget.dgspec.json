@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JBaker\\Documents\\GitHub\\PythonInterpreter\\PythonInterpreter.csproj": {}
+    "C:\\Users\\JBaker\\Documents\\GitHub\\chatbot-tensorflow-v2.0\\PythonInterpreter\\PythonInterpreter.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JBaker\\Documents\\GitHub\\PythonInterpreter\\PythonInterpreter.csproj": {
+    "C:\\Users\\JBaker\\Documents\\GitHub\\chatbot-tensorflow-v2.0\\PythonInterpreter\\PythonInterpreter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JBaker\\Documents\\GitHub\\PythonInterpreter\\PythonInterpreter.csproj",
+        "projectUniqueName": "C:\\Users\\JBaker\\Documents\\GitHub\\chatbot-tensorflow-v2.0\\PythonInterpreter\\PythonInterpreter.csproj",
         "projectName": "PythonInterpreter",
-        "projectPath": "C:\\Users\\JBaker\\Documents\\GitHub\\PythonInterpreter\\PythonInterpreter.csproj",
+        "projectPath": "C:\\Users\\JBaker\\Documents\\GitHub\\chatbot-tensorflow-v2.0\\PythonInterpreter\\PythonInterpreter.csproj",
         "packagesPath": "C:\\Users\\JBaker\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JBaker\\Documents\\GitHub\\PythonInterpreter\\obj\\",
+        "outputPath": "C:\\Users\\JBaker\\Documents\\GitHub\\chatbot-tensorflow-v2.0\\PythonInterpreter\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
