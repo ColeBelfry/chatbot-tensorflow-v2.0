@@ -77,9 +77,10 @@ def createNewModel(name, num_epochs, batch_size_val, learning_rate_val, hidden_l
             model.add(tf.keras.layers.Dense(8))
         elif layer == "flatten":
             model.add(tf.keras.layers.Flatten())
-    model.add(tf.keras.layers.Dense(8))
-    model.add(tf.keras.layers.Dense(8))
-    model.add(tf.keras.layers.Dense(8))
+        else:
+            model.add(tf.keras.layers.Dense(8))
+            model.add(tf.keras.layers.Dense(8))
+            model.add(tf.keras.layers.Dense(8))
     model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
 
     train(model, name, num_epochs, batch_size_val, learning_rate_val)
