@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "1FPPJwEAV9V9eOgEnYCkHr7lxTIF+1I4L6MRHQFR5wjC7WlzzfUIZKU8H4zt/n84nmqtg31Fmvpk2FSrc9GelQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\cbelfry\\source\\repos\\chatbot-tensorflow-v2.0\\PythonInterpreter\\PythonInterpreter.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\cbelfry\\.nuget\\packages\\dynamiclanguageruntime\\1.3.1\\dynamiclanguageruntime.1.3.1.nupkg.sha512",
+    "C:\\Users\\cbelfry\\.nuget\\packages\\ironpython\\2.7.12\\ironpython.2.7.12.nupkg.sha512",
+    "C:\\Users\\cbelfry\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\cbelfry\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\cbelfry\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\cbelfry\\.nuget\\packages\\mono.unix\\7.1.0-final.1.21458.1\\mono.unix.7.1.0-final.1.21458.1.nupkg.sha512",
+    "C:\\Users\\cbelfry\\.nuget\\packages\\system.codedom\\4.7.0\\system.codedom.4.7.0.nupkg.sha512",
+    "C:\\Users\\cbelfry\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
+    "C:\\Users\\cbelfry\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",
+    "C:\\Users\\cbelfry\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
+    "C:\\Users\\cbelfry\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.7.0\\system.security.cryptography.protecteddata.4.7.0.nupkg.sha512",
+    "C:\\Users\\cbelfry\\.nuget\\packages\\system.security.permissions\\4.7.0\\system.security.permissions.4.7.0.nupkg.sha512",
+    "C:\\Users\\cbelfry\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
+    "C:\\Users\\cbelfry\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}
