@@ -25,7 +25,7 @@ namespace PythonInterpreter
             }
         }
 
-        public void ExecuteCreateModelFunction(string modelName, int epochsNum, int batchSizeNum, int learningRateNum, List<(string, int)> hiddenLayers)
+        public string ExecuteCreateModelFunction(string modelName, int epochsNum, int batchSizeNum, int learningRateNum, List<(string, int)> hiddenLayers)
         {
             try
             {
@@ -33,11 +33,12 @@ namespace PythonInterpreter
                 ScriptScope scope = engine.CreateScope();
                 engine.ExecuteFile(solutionPath + "\\chatbot-tensorflow-v2.0\\chatbot.py", scope);
                 dynamic function = scope.GetVariable("createNewModel");
-                function(modelName, epochsNum, batchSizeNum, learningRateNum, hiddenLayers);
+                return function(modelName, epochsNum, batchSizeNum, learningRateNum, hiddenLayers);
             }
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+                return "Encountered error: " + ex;
             }
         }
 
