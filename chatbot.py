@@ -70,45 +70,56 @@ output = numpy.array(output)
 
 # creating the neural net
 
-def createNewModel(name, num_epochs, batch_size_val, learning_rate_val, hidden_layers):
-    model = tf.keras.Sequential()
-    model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]))))
-    #I might remove this depending on if we can transfer an array or not from UI
-    for layer in hidden_layers:
-        if layer.type == "dense":
+def createNewModel(model_name, num_epochs, batch_size_val, learning_rate_val, hidden_layers):
+    try:
+        model = keras.models.load_model('KerasModels\\' + model_name + '.h5')
+        return f"Failed to create a new model, model already exists with the name: {model_name}"
+    except:
+        model = tf.keras.Sequential()
+        model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]))))
+        if len(hidden_layers) > 0:
+            # Custom model layers
+            for layer in hidden_layers:
+                if layer[1] == "dense":
+                    model.add(tf.keras.layers.Dense(layer[2]))
+                elif layer[1] == "flatten":
+                    model.add(tf.keras.layers.Flatten(layer[2]))
+        else:
+            # Default model layers
             model.add(tf.keras.layers.Dense(8))
-        elif layer.type == "flatten":
-            model.add(tf.keras.layers.Flatten())
-    model.add(tf.keras.layers.Dense(8))
-    model.add(tf.keras.layers.Dense(8))
-    model.add(tf.keras.layers.Dense(8))
-    model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
+            model.add(tf.keras.layers.Dense(8))
+            model.add(tf.keras.layers.Dense(8))
+        model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
 
-    train(model, name, num_epochs, batch_size_val, learning_rate_val)
+        # Train the newly created model
+        train(model, model_name, num_epochs, batch_size_val, learning_rate_val)
+        return f"Created a new trained model with the name: {model_name}"
     # run this command to get the summary of the model
     # model.summary()
 
 # ----------------------------------------------------------------------
 
 #epoch = 10000  batch size = 1000 optimiser = "adam"
-def train(model, name, num_epochs, batch_size_val, learning_rate_val):
+def train(model_name, num_epochs, batch_size_val, learning_rate_val):
+    try:
+        model = keras.models.load_model('KerasModels\\' + model_name + '.h5')
+    except:
+        return f"Failed to train, no model with the name: {model_name}"
     #sets the learning rate for the adam optimizer
     opt = keras.optimizers.Adam(learning_rate = learning_rate_val)
     model.compile(optimizer=opt,
                   loss="categorical_crossentropy", metrics=["accuracy"])
     model.fit(training, output, epochs=num_epochs, batch_size=batch_size_val)
     model.save('KerasModels\\' + name + '.h5')
+    return f"Succesfully trained the model with name: {model_name}"
 
-def loadModel(model_name):
-    try:
-        model = keras.models.load_model('KerasModels\\' + model_name + '.h5')
-        return model
-    except:
-        #model not found exception
-        train()
-
-#The current active model (pass in the name from the UI)
-current_model = loadModel(current_model_name)
+def train(model, model_name, num_epochs, batch_size_val, learning_rate_val):
+    #sets the learning rate for the adam optimizer
+    opt = keras.optimizers.Adam(learning_rate = learning_rate_val)
+    model.compile(optimizer=opt,
+                  loss="categorical_crossentropy", metrics=["accuracy"])
+    model.fit(training, output, epochs=num_epochs, batch_size=batch_size_val)
+    model.save('KerasModels\\' + name + '.h5')
 
 
 def bag_of_words(s, words):
