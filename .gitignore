@@ -6,3 +6,4 @@
 *.v2
 .vs/chatbot-tensorflow-v2.0/v17/.suo
 *.1
+*.sentinel
