@@ -12,9 +12,9 @@
                         "Hya there"
                   ],
                   "responses": [
-                        "Hi human, please tell me your GeniSys user",
-                        "Hello human, please tell me your GeniSys user",
-                        "Hola human, please tell me your GeniSys user"
+                        "Hi human",
+                        "Hello human",
+                        "Hola human"
                   ],
                   "extension":  {
                         "function": "",
@@ -575,9 +575,9 @@
                   "intent": "Clever",
                   "patterns": [
                         "You are very clever",
-                        "You are a very clever girl",
+                        "You are a very clever",
                         "You are very intelligent",
-                        "You are a very intelligent girl",
+                        "You are a very intelligent",
                         "You are a genious",
                         "Clever girl",
                         "Genious"
