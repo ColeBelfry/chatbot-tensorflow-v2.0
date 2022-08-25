@@ -7,4 +7,9 @@
     <RootNamespace>chatbot_website</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\OneDrive - Neumont College of Computer Science\Second Year\Summer 2022\Sprint 2\Projects In Existing Code\chatbot-tensorflow-v2.0\DAL\DAL.csproj" />
+    <ProjectReference Include="..\PythonInterpreter\PythonInterpreter.csproj" />
+  </ItemGroup>
+
 </Project>

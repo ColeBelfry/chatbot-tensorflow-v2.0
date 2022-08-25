@@ -108,13 +108,6 @@ def loadModel(model_name):
         #model not found exception
         print("model: " + model_name + " could not be found")
 
-#This is a test to make a new model
-hiddenlayers = ["dense", "dense", "dense"]
-createNewModel("bob", 500, 50, 0.001, hiddenlayers)
-#The current active model (pass in the name from the UI)
-current_model = loadModel("bob")
-#weights = current_model.get_weights()
-
 
 def bag_of_words(s, words):
     bag = [0 for _ in range(len(words))]
@@ -147,3 +140,10 @@ def chat(model_name, user_input):
         return f"{random.choice(responses)}   (Category: {intent})"
     else:
         return f"{random.choice(invalid_responses)}"
+
+
+#This is a test to make a new model
+#hiddenlayers = ["dense", "dense", "dense"]
+#createNewModel("bob", 500, 50, 0.001, hiddenlayers)
+#The current active model (pass in the name from the UI)
+#print(chat("bob", "Hello"))
