@@ -1472,8 +1472,8 @@
     },
     "DAL/1.0.0": {
       "type": "project",
-      "path": "../../../../OneDrive - Neumont College of Computer Science/Second Year/Summer 2022/Sprint 2/Projects In Existing Code/chatbot-tensorflow-v2.0/DAL/DAL.csproj",
-      "msbuildProject": "../../../../OneDrive - Neumont College of Computer Science/Second Year/Summer 2022/Sprint 2/Projects In Existing Code/chatbot-tensorflow-v2.0/DAL/DAL.csproj"
+      "path": "../DAL/DAL.csproj",
+      "msbuildProject": "../DAL/DAL.csproj"
     },
     "PythonInterpreter/1.0.0": {
       "type": "project",
@@ -1520,8 +1520,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\cbelfry\\OneDrive - Neumont College of Computer Science\\Second Year\\Summer 2022\\Sprint 2\\Projects In Existing Code\\chatbot-tensorflow-v2.0\\DAL\\DAL.csproj": {
-              "projectPath": "C:\\Users\\cbelfry\\OneDrive - Neumont College of Computer Science\\Second Year\\Summer 2022\\Sprint 2\\Projects In Existing Code\\chatbot-tensorflow-v2.0\\DAL\\DAL.csproj"
+            "C:\\Users\\cbelfry\\source\\repos\\chatbot-tensorflow-v2.0\\DAL\\DAL.csproj": {
+              "projectPath": "C:\\Users\\cbelfry\\source\\repos\\chatbot-tensorflow-v2.0\\DAL\\DAL.csproj"
             },
             "C:\\Users\\cbelfry\\source\\repos\\chatbot-tensorflow-v2.0\\PythonInterpreter\\PythonInterpreter.csproj": {
               "projectPath": "C:\\Users\\cbelfry\\source\\repos\\chatbot-tensorflow-v2.0\\PythonInterpreter\\PythonInterpreter.csproj"
