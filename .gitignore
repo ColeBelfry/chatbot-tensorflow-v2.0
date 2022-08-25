@@ -1,9 +1,7 @@
 
 *.h5
+*.sentinel
 *.vsidx
-.vs/chatbot-tensorflow-v2.0/v17/.suo
-*.v2
 *.v2
 .vs/chatbot-tensorflow-v2.0/v17/.suo
 *.1
-*.sentinel
