@@ -1,72 +1,26 @@
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\appsettings.json
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\chatbot website.staticwebassets.runtime.json
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\chatbot website.exe
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\chatbot website.deps.json
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\chatbot website.runtimeconfig.json
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\chatbot website.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\chatbot website.pdb
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.csproj.AssemblyReference.cache
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.AssemblyInfoInputs.cache
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.AssemblyInfo.cs
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.csproj.CoreCompileInputs.cache
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.RazorAssemblyInfo.cache
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.RazorAssemblyInfo.cs
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\staticwebassets.build.json
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\scopedcss\bundle\chatbot website.styles.css
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\scopedcss\projectbundle\chatbot website.bundle.scp.css
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\refint\chatbot website.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.pdb
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.genruntimeconfig.cache
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\ref\chatbot website.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.Dynamic.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.Scripting.Metadata.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.Scripting.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\IronPython.Modules.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\IronPython.SQLite.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\IronPython.Wpf.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\IronPython.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Mono.Unix.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\System.CodeDom.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\System.Drawing.Common.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\System.Security.Permissions.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\System.Windows.Extensions.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\android-arm\native\libMono.Unix.so
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\android-arm64\native\libMono.Unix.so
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\android-x64\native\libMono.Unix.so
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\android-x86\native\libMono.Unix.so
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\ios-arm\native\libMono.Unix.a
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\ios-arm64\native\libMono.Unix.a
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\ios-armv7s\native\libMono.Unix.a
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\iossimulator-arm64\native\libMono.Unix.a
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\iossimulator-x64\native\libMono.Unix.a
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\linux-arm\native\libMono.Unix.so
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\linux-arm64\native\libMono.Unix.so
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\linux-x64\native\libMono.Unix.so
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\maccatalyst-arm64\native\libMono.Unix.a
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\maccatalyst-x64\native\libMono.Unix.a
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\osx-arm64\native\libMono.Unix.dylib
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\osx-x64\native\libMono.Unix.dylib
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\tvos-arm64\native\libMono.Unix.a
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\tvossimulator-x64\native\libMono.Unix.a
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\DAL.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\PythonInterpreter.dll
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\DAL.pdb
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\PythonInterpreter.pdb
-C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.csproj.CopyComplete
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\appsettings.json
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\chatbot website.staticwebassets.runtime.json
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\chatbot website.exe
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\chatbot website.deps.json
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\chatbot website.runtimeconfig.json
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\chatbot website.dll
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\chatbot website.pdb
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.csproj.AssemblyReference.cache
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.AssemblyInfoInputs.cache
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.AssemblyInfo.cs
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.csproj.CoreCompileInputs.cache
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.RazorAssemblyInfo.cache
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.RazorAssemblyInfo.cs
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\scopedcss\bundle\chatbot website.styles.css
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\scopedcss\projectbundle\chatbot website.bundle.scp.css
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.dll
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\refint\chatbot website.dll
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.pdb
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.genruntimeconfig.cache
+C:\Users\JBaker\Documents\GitHub\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\ref\chatbot website.dll
