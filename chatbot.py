@@ -14,6 +14,7 @@ import random
 import json
 import nltk
 from nltk.stem.lancaster import LancasterStemmer
+import sys
 
 invalid_responses = ["Please rephrase that.", "That is weird, I do not recognize that.", "Try again later.", "Could not come up with a response, try again."]
 
@@ -147,3 +148,5 @@ def chat(model_name, user_input):
 #createNewModel("bob", 500, 50, 0.001, hiddenlayers)
 #The current active model (pass in the name from the UI)
 #print(chat("bob", "Hello"))
+
+print(chat(sys.argv[1], sys.argv[2]))

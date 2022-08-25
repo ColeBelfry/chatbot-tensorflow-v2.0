@@ -1,22 +1,30 @@
-﻿using IronPython.Hosting;
-using Microsoft.Scripting.Hosting;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace PythonInterpreter
 {
 	public class ToPython
 	{
-		private string solutionPath = Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName;
-
 		public string ExecuteChatFunction(string modelName, string userInput)
 		{
 			try
 			{
-				ScriptEngine engine = Python.CreateEngine();
-				ScriptScope scope = engine.CreateScope();
-				engine.ExecuteFile(solutionPath + "\\chatbot-tensorflow-v2.0\\chatbot.py", scope);
-				dynamic function = scope.GetVariable("chat");
-				return function(modelName, userInput);
+				ProcessStartInfo info = new ProcessStartInfo
+				{
+					FileName = GetPythonExe(),
+					Arguments = string.Format("{0} {1} {2}", ".\\chatbot.py", modelName, userInput),
+					WorkingDirectory = GetSolution(),
+					UseShellExecute = false,
+					RedirectStandardOutput = true
+				};
+
+				using(Process process = Process.Start(info))
+				{
+					using(StreamReader reader = process.StandardOutput)
+					{
+						string output = reader.ReadToEnd();
+						return output;
+					}
+				}
 			}
 			catch (Exception ex)
 			{
@@ -24,36 +32,71 @@ namespace PythonInterpreter
 				return "Encountered error: " + ex;
 			}
 		}
-		public void ExecuteCreateModelFunction(string modelName, int epochsNum, int batchSizeNum, int learningRateNum, (string, int) hiddenLayers)
+		//public void ExecuteCreateModelFunction(string modelName, int epochsNum, int batchSizeNum, int learningRateNum, (string, int) hiddenLayers)
+		//{
+		//	try
+		//	{
+		//		ScriptEngine engine = Python.CreateEngine();
+		//		ScriptScope scope = engine.CreateScope();
+		//		engine.ExecuteFile(solutionPath + "\\chatbot-tensorflow-v2.0\\chatbot.py", scope);
+		//		dynamic function = scope.GetVariable("createNewModel");
+		//		function(modelName, epochsNum, batchSizeNum, learningRateNum, hiddenLayers);
+		//	}
+		//	catch (Exception ex)
+		//	{
+		//		Debug.WriteLine(ex.Message);
+		//	}
+		//}
+
+		//public void ExecuteTrainModelFunction(string modelName, int epochsNum, int batchSizeNum, int learningRateNum)
+		//{
+		//	try
+		//	{
+		//		ScriptEngine engine = Python.CreateEngine();
+		//		ScriptScope scope = engine.CreateScope();
+		//		engine.ExecuteFile(solutionPath + "\\chatbot-tensorflow-v2.0\\chatbot.py", scope);
+		//		dynamic function = scope.GetVariable("train");
+		//		function(modelName, epochsNum, batchSizeNum, learningRateNum);
+		//	}
+		//	catch (Exception ex)
+		//	{
+		//		Debug.WriteLine(ex.Message);
+		//	}
+		//}
+
+		private string GetPythonExe()
 		{
-			try
+			string[] entries = Environment.GetEnvironmentVariable("path").Split(';');
+			string pythonLocation = null;
+			foreach (string entry in entries)
 			{
-				ScriptEngine engine = Python.CreateEngine();
-				ScriptScope scope = engine.CreateScope();
-				engine.ExecuteFile(solutionPath + "\\chatbot-tensorflow-v2.0\\chatbot.py", scope);
-				dynamic function = scope.GetVariable("createNewModel");
-				function(modelName, epochsNum, batchSizeNum, learningRateNum, hiddenLayers);
-			}
-			catch (Exception ex)
+                if (entry.ToLower().Contains("python") && !entry.ToLower().Contains("scripts"))
+                {
+                    pythonLocation = entry;
+					break;
+                }
+            }
+
+			if (string.IsNullOrEmpty(pythonLocation))
 			{
-				Debug.WriteLine(ex.Message);
+				throw new Exception("Unable to find a python executable path, please make sure you have python installed.");
 			}
+			return pythonLocation + "python.exe";
 		}
 
-		public void ExecuteTrainModelFunction(string modelName, int epochsNum, int batchSizeNum, int learningRateNum)
+		private string GetSolution()
 		{
-			try
+			DirectoryInfo directory = new DirectoryInfo(Directory.GetCurrentDirectory());
+			while (directory != null && !directory.GetFiles("*.sln").Any())
 			{
-				ScriptEngine engine = Python.CreateEngine();
-				ScriptScope scope = engine.CreateScope();
-				engine.ExecuteFile(solutionPath + "\\chatbot-tensorflow-v2.0\\chatbot.py", scope);
-				dynamic function = scope.GetVariable("train");
-				function(modelName, epochsNum, batchSizeNum, learningRateNum);
+				directory = directory.Parent;
 			}
-			catch (Exception ex)
+
+			if (directory == null)
 			{
-				Debug.WriteLine(ex.Message);
+				throw new Exception("Unable to find the .sln file for this project.");
 			}
+			return directory.FullName;
 		}
 	}
 }
