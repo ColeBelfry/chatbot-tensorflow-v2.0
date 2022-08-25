@@ -24,8 +24,5 @@
   <ItemGroup>
     <Content Include="Intent.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="KerasModels\" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
 </Project>
