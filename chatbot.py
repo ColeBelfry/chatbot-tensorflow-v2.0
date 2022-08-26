@@ -72,28 +72,46 @@ output = numpy.array(output)
 
 # creating the neural net
 
-def createNewModel(name, num_epochs, batch_size_val, learning_rate_val, hidden_layers):
+def createNewModel(model_name, num_epochs, batch_size_val, learning_rate_val, hidden_layers):
+    # Check if model already exists
+    model = loadModel(model_name)
+    if (type(model) is not str): return f"Model with name {model_name} already exists"
+
     model = tf.keras.Sequential()
     model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]),)))
-    #I might remove this depending on if we can transfer an array or not from UI
-    for layer in hidden_layers:
-        if layer == "dense":
-            model.add(tf.keras.layers.Dense(8))
-        elif layer == "flatten":
-            model.add(tf.keras.layers.Flatten())
-        else:
-            model.add(tf.keras.layers.Dense(8))
-            model.add(tf.keras.layers.Dense(8))
-            model.add(tf.keras.layers.Dense(8))
+    if (len(hidden_layers) > 0):
+        # Passed in layers
+        for layer in hidden_layers:
+            if layer == "dense":
+                model.add(tf.keras.layers.Dense(8))
+            elif layer == "flatten":
+                model.add(tf.keras.layers.Flatten())
+    else:
+        # Default layers
+        model.add(tf.keras.layers.Dense(8))
+        model.add(tf.keras.layers.Dense(8))
+        model.add(tf.keras.layers.Dense(8))
     model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
 
-    train(model, name, num_epochs, batch_size_val, learning_rate_val)
+    trainNew(model, name, num_epochs, batch_size_val, learning_rate_val)
     # run this command to get the summary of the model
     # model.summary()
 
 # ----------------------------------------------------------------------
 #epoch = 1000  batch size = 100 optimiser = "adam" learning_rate = 0.001
-def train(model, name, num_epochs, batch_size_val, learning_rate_val):
+def train(model_name, num_epochs, batch_size_val, learning_rate_val):
+    # Valid model check, does it exist?
+    model = loadModel(model_name)
+    if (type(model) is str): return model
+
+    #sets the learning rate for the adam optimizer
+    opt = keras.optimizers.Adam(learning_rate = learning_rate_val)
+    model.compile(optimizer=opt,
+                  loss="categorical_crossentropy", metrics=["accuracy"])
+    model.fit(training, output, epochs=num_epochs, batch_size=batch_size_val)
+    model.save('KerasModels\\' + name + '.h5')
+
+def trainNew(model, model_name, num_epochs, batch_size_val, learning_rate_val):
     #sets the learning rate for the adam optimizer
     opt = keras.optimizers.Adam(learning_rate = learning_rate_val)
     model.compile(optimizer=opt,
@@ -107,7 +125,7 @@ def loadModel(model_name):
         return model
     except:
         #model not found exception
-        print("model: " + model_name + " could not be found")
+        return "model: " + model_name + " could not be found"
 
 
 def bag_of_words(s, words):
@@ -125,11 +143,10 @@ def bag_of_words(s, words):
 
 
 def chat(model_name, user_input):
-    try:
-        model = keras.models.load_model('KerasModels\\' + model_name + '.h5')
-    except:
-        return "A problem was encountered when loading the model, make sure you have created one first."
-
+    # Valid model check, does it exist?
+    model = loadModel(model_name)
+    if (type(model) is str): return model
+    
     results = model.predict([bag_of_words(user_input, words)])[0]
 
     results_index = numpy.argmax(results)
@@ -138,7 +155,7 @@ def chat(model_name, user_input):
         for tg in data["intents"]:
             if tg["intent"] == intent:
                 responses = tg["responses"]
-        return f"{random.choice(responses)}   (Category: {intent})"
+        return f"{random.choice(responses)}"
     else:
         return f"{random.choice(invalid_responses)}"
 
@@ -149,4 +166,20 @@ def chat(model_name, user_input):
 #The current active model (pass in the name from the UI)
 #print(chat("bob", "Hello"))
 
-print(chat(sys.argv[1], sys.argv[2]))
+if (sys.argv[1] == "chat"):
+    if (len(sys.argv) == 4):
+        print(chat(sys.argv[2], sys.argv[3]))
+    else:
+        print("To few or to many arugments were passed for function chat")
+elif (sys.argv[1] == "new_model"):
+    if (len(sys.argv) == 7):
+        print(createNewModel(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6]))
+    else:
+        print("To few or to many arugments were passed for function chat")
+elif (sys.argv[1] == "train"):
+    if (len(sys.argv) == 6):
+        print(train(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5]))
+    else:
+        print("To few or to many arugments were passed for function chat")
+else:
+    print(f"{sys.argv[1]} is not a valid function in chatbot.")

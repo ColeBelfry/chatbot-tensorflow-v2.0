@@ -11,7 +11,7 @@ namespace PythonInterpreter
 				ProcessStartInfo info = new ProcessStartInfo
 				{
 					FileName = GetPythonExe(),
-					Arguments = string.Format("{0} {1} {2}", ".\\chatbot.py", modelName, userInput),
+					Arguments = string.Format("{0} {1} {2} {3}", ".\\chatbot.py", "chat", modelName, userInput),
 					WorkingDirectory = GetSolution(),
 					UseShellExecute = false,
 					RedirectStandardOutput = true
@@ -32,37 +32,64 @@ namespace PythonInterpreter
 				return "Encountered error: " + ex;
 			}
 		}
-		//public void ExecuteCreateModelFunction(string modelName, int epochsNum, int batchSizeNum, int learningRateNum, (string, int) hiddenLayers)
-		//{
-		//	try
-		//	{
-		//		ScriptEngine engine = Python.CreateEngine();
-		//		ScriptScope scope = engine.CreateScope();
-		//		engine.ExecuteFile(solutionPath + "\\chatbot-tensorflow-v2.0\\chatbot.py", scope);
-		//		dynamic function = scope.GetVariable("createNewModel");
-		//		function(modelName, epochsNum, batchSizeNum, learningRateNum, hiddenLayers);
-		//	}
-		//	catch (Exception ex)
-		//	{
-		//		Debug.WriteLine(ex.Message);
-		//	}
-		//}
 
-		//public void ExecuteTrainModelFunction(string modelName, int epochsNum, int batchSizeNum, int learningRateNum)
-		//{
-		//	try
-		//	{
-		//		ScriptEngine engine = Python.CreateEngine();
-		//		ScriptScope scope = engine.CreateScope();
-		//		engine.ExecuteFile(solutionPath + "\\chatbot-tensorflow-v2.0\\chatbot.py", scope);
-		//		dynamic function = scope.GetVariable("train");
-		//		function(modelName, epochsNum, batchSizeNum, learningRateNum);
-		//	}
-		//	catch (Exception ex)
-		//	{
-		//		Debug.WriteLine(ex.Message);
-		//	}
-		//}
+		public string ExecuteCreateModelFunction(string modelName, int epochsNum, int batchSizeNum, int learningRateNum, string[] hiddenLayers)
+		{
+			try
+			{
+                ProcessStartInfo info = new ProcessStartInfo
+                {
+                    FileName = GetPythonExe(),
+                    Arguments = string.Format("{0} {1} {2} {3} {4} {5} {6}", ".\\chatbot.py", "new_model", modelName, epochsNum, batchSizeNum, learningRateNum, hiddenLayers),
+                    WorkingDirectory = GetSolution(),
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true
+                };
+
+				using (Process process = Process.Start(info))
+				{
+					using (StreamReader reader = process.StandardOutput)
+					{
+						string output = reader.ReadToEnd();
+						return output;
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex.Message);
+                return "Encountered error: " + ex;
+            }
+		}
+
+		public string ExecuteTrainModelFunction(string modelName, int epochsNum, int batchSizeNum, int learningRateNum)
+		{
+            try
+            {
+                ProcessStartInfo info = new ProcessStartInfo
+                {
+                    FileName = GetPythonExe(),
+                    Arguments = string.Format("{0} {1} {2} {3} {4} {5}", ".\\chatbot.py", "train", modelName, epochsNum, batchSizeNum, learningRateNum),
+                    WorkingDirectory = GetSolution(),
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true
+                };
+
+                using (Process process = Process.Start(info))
+                {
+                    using (StreamReader reader = process.StandardOutput)
+                    {
+                        string output = reader.ReadToEnd();
+                        return output;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return "Encountered error: " + ex;
+            }
+        }
 
 		private string GetPythonExe()
 		{
