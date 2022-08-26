@@ -74,12 +74,14 @@ output = numpy.array(output)
 def createNewModel(name, num_epochs, batch_size_val, learning_rate_val, hidden_layers):
     model = tf.keras.Sequential()
     model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]),)))
-    #I might remove this depending on if we can transfer an array or not from UI
+    #layer is a tuple of (string, int)
     for layer in hidden_layers:
-        if layer == "dense":
-            model.add(tf.keras.layers.Dense(8))
-        elif layer == "flatten":
+        if layer[0] == "dense":
+            model.add(tf.keras.layers.Dense(layer[1]))
+        elif layer[0] == "flatten":
             model.add(tf.keras.layers.Flatten())
+        elif layer[0] == "dropout":
+            model.add(tf.keras.layers.Dropout(rate=layer[1]))
         else:
             model.add(tf.keras.layers.Dense(8))
             model.add(tf.keras.layers.Dense(8))

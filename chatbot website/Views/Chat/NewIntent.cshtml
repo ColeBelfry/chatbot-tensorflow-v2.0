@@ -4,49 +4,54 @@
 @{
     // add the model
 }
-
+@model IntentViewModel
 @Html.Partial("_Sidebar")
 
 <div class="container">
-    <form id="new_intent" action="AddIntent" method="post"></form>
-    <form id="new_pattern" action="NewPattern" method="post"></form>
-    <form id="new_response" action="NewResponse" method="post"></form>
+    <form id="new_intent" action="Chat/NewIntent" method="post"></form>
+    <form id="new_pattern" action="Chat/NewPattern" method="post"></form>
+    <form id="new_response" action="Chat/NewResponse" method="post"></form>
     <div class="p-4 p-md-5 rounded-3 bg-light align-content-center">
         <div class="row g-3">
             <div class="col-12">
                 <label class="form-label" for="ipattern">New Pattern:</label>
-                <input name="pattern" type="text" class="form-control" id="ipattern" form="NewPattern" required />
-                <input type="submit" form="NewPattern"/>
+                <input name="pattern" type="text" class="form-control" id="ipattern" form="new_pattern" required />
+                <input type="submit" form="new_pattern" value="Add Pattern"/>
             </div>
             <div class="col-12">
                 "patterns": [
                 @{//this isn't done yet
                 }
-                @foreach(var pattern in Model.patterns){
-                    <p>"@pattern",</p>
+                @if(Model.Patterns.Count > 0){
+                    foreach (var pattern in Model.Patterns)
+                    {
+                        <p>"@pattern",</p>
+                    }
                 }
                 ],
             </div>
             <div class="col-12">
                 <label class="form-label" for="iresponse">New Response:</label>
-                <input name="response" type="text" class="form-control" id="iresponse" form="NewResponse" required />
-                <input type="submit" form="NewResponse"/>
+                <input name="response" type="text" class="form-control" id="iresponse" form="new_response" required />
+                <input type="submit" form="new_response" value="Add Response"/>
             </div>
             <div class="col-12">
                 "responses": [
                 @{
                     //this isn't done yet
                 }
-                @foreach (var response in Model.responses)
-                {
-                    <p>"@response",</p>
+                @if(Model.Responses.Count > 0){
+                    @foreach (var response in Model.Responses)
+                    {
+                        <p>"@response",</p>
+                    }
                 }
                 ],
             </div>
             <div class="col-12">
                 <label class="form-label" for="iIntent">New Intent:</label>
-                <input name="batch_size" type="text" class="form-control" id="iIntent" form="NewIntent" required />
-                <input type="submit" form="NewIntent" />
+                <input name="intent_name" type="text" class="form-control" id="iIntent" form="new_intent" value="intent" required />
+                <input type="submit" form="new_intent" value="Add Intent" />
             </div>
         </div>
     </div>    

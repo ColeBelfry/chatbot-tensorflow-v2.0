@@ -27,3 +27,31 @@ sidebar {
 main_bg_color {
     background-color: #2d2d2d;
 }
+
+.chat_card {
+    width: 800px;
+}
+
+.user_textbox {
+    display: inline-block;
+    background-color: #009FB7;
+    padding: 5px;
+    text-align: center;
+    color: white;
+}
+
+.bot_textbox {
+    display: inline-block;
+    background-color: #715AFF;
+    padding: 5px;
+    text-align: center;
+    color: white;
+}
+
+.chat_space {
+    height: 280px;
+}
+
+.inline_block {
+    display: inline-block;
+}

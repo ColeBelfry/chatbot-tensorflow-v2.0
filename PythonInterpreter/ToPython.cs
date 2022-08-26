@@ -6,7 +6,7 @@ namespace PythonInterpreter
 {
 	public class ToPython
 	{
-		private string solutionPath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName).FullName;
+		private string solutionPath = Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName;
 
 		public string ExecuteChatFunction(string modelName, string userInput)
 		{
@@ -14,7 +14,7 @@ namespace PythonInterpreter
 			{
 				ScriptEngine engine = Python.CreateEngine();
 				ScriptScope scope = engine.CreateScope();
-				engine.ExecuteFile(solutionPath + "\\chatbot-tensorflow-v2.0\\chatbot.py", scope);
+				engine.ExecuteFile(Path.Join(solutionPath, "\\chatbot-tensorflow-v2.0\\chatbot.py"), scope);
 				dynamic function = scope.GetVariable("chat");
 				return function(modelName, userInput);
 			}
