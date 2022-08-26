@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ChatListViewModel
+@Html.Partial("_Sidebar")
+<main role="main" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="container-fluid">
+        <div id="chat_container">
+            <div class="card">
+                <header class="card-header header-title">
+                    <p class="card-header-title">ChatBot</p>
+                </header>
+                <div class="card-content">
+                    @if (Model.ChatPairs != null) 
+                    {
+                        @foreach (var chat_pair in Model.ChatPairs)
+                        {
+                            <div class="row">
+                                <div class="col align-self-start">
+                                    <p>User: @chat_pair.userInput</p>
+                                </div>
+                                <div class="col"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col"></div>
+                                <div class="col align-self-end">
+                                    <p class="text">Bot: @chat_pair.botResponse</p>
+                                </div>
+                            </div>
+                        }
+                    }  
+                </div>
+            </div>
+        </div>
+        <form name="message" action="/Chat/ChatWindow" method="post" class="p-4 p-md-5 rounded-3 bg-light align-content-center">
+            <input name="usermsg" type="text" id="usermsg" />
+            <input name="submitmsg" type="submit" id="submitmsg" value="Send" />
+        </form>
+    </div>
+</main>

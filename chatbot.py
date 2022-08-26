@@ -14,6 +14,10 @@ import random
 import json
 import nltk
 from nltk.stem.lancaster import LancasterStemmer
+import sys
+
+invalid_responses = ["Please rephrase that.", "That is weird, I do not recognize that.", "Try again later.", "Could not come up with a response, try again."]
+
 
 with open("intent.json") as file:
     data = json.load(file)
@@ -68,31 +72,60 @@ output = numpy.array(output)
 
 # creating the neural net
 
-model = tf.keras.Sequential()
+def createNewModel(model_name, num_epochs, batch_size_val, learning_rate_val, hidden_layers):
+    # Check if model already exists
+    model = loadModel(model_name)
+    if (type(model) is not str): return f"Model with name {model_name} already exists"
 
-model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]))))
-model.add(tf.keras.layers.Dense(8))
-model.add(tf.keras.layers.Dense(8))
-model.add(tf.keras.layers.Dense(8))
-model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
+    model = tf.keras.Sequential()
+    model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]),)))
+    if (len(hidden_layers) > 0):
+        # Passed in layers
+        for layer in hidden_layers:
+            if layer == "dense":
+                model.add(tf.keras.layers.Dense(8))
+            elif layer == "flatten":
+                model.add(tf.keras.layers.Flatten())
+    else:
+        # Default layers
+        model.add(tf.keras.layers.Dense(8))
+        model.add(tf.keras.layers.Dense(8))
+        model.add(tf.keras.layers.Dense(8))
+    model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
 
-# run this command to get the summary of the model
-# model.summary()
+    trainNew(model, name, num_epochs, batch_size_val, learning_rate_val)
+    # run this command to get the summary of the model
+    # model.summary()
 
 # ----------------------------------------------------------------------
+#epoch = 1000  batch size = 100 optimiser = "adam" learning_rate = 0.001
+def train(model_name, num_epochs, batch_size_val, learning_rate_val):
+    # Valid model check, does it exist?
+    model = loadModel(model_name)
+    if (type(model) is str): return model
 
-
-def train():
-    model.compile(optimizer="adam",
+    #sets the learning rate for the adam optimizer
+    opt = keras.optimizers.Adam(learning_rate = learning_rate_val)
+    model.compile(optimizer=opt,
                   loss="categorical_crossentropy", metrics=["accuracy"])
-    model.fit(training, output, epochs=10000, batch_size=1000)
-    model.save('model.h5')
+    model.fit(training, output, epochs=num_epochs, batch_size=batch_size_val)
+    model.save('KerasModels\\' + name + '.h5')
 
+def trainNew(model, model_name, num_epochs, batch_size_val, learning_rate_val):
+    #sets the learning rate for the adam optimizer
+    opt = keras.optimizers.Adam(learning_rate = learning_rate_val)
+    model.compile(optimizer=opt,
+                  loss="categorical_crossentropy", metrics=["accuracy"])
+    model.fit(training, output, epochs=num_epochs, batch_size=batch_size_val)
+    model.save('KerasModels\\' + name + '.h5')
 
-try:
-    model = keras.models.load_model('model.h5')
-except:
-    train()
+def loadModel(model_name):
+    try:
+        model = keras.models.load_model('KerasModels\\' + model_name + '.h5')
+        return model
+    except:
+        #model not found exception
+        return "model: " + model_name + " could not be found"
 
 
 def bag_of_words(s, words):
@@ -109,45 +142,44 @@ def bag_of_words(s, words):
     return numpy.array([bag])
 
 
-def chat():
-    print("Start talking with the bot (type /quit to stop and /retrain to train again)!")
-    while True:
-        inp = input("You: ")
+def chat(model_name, user_input):
+    # Valid model check, does it exist?
+    model = loadModel(model_name)
+    if (type(model) is str): return model
+    
+    results = model.predict([bag_of_words(user_input, words)])[0]
 
-        if inp.lower() == "/quit":
-            break
-            exit()
-
-        elif inp.lower() == "/retrain":
-            train()
-            chat()
-
-        else:
-            results = model.predict([bag_of_words(inp, words)])[0]
-
-            results_index = numpy.argmax(results)
-            intent = labels[results_index]
-            if results[results_index] > 0.9:
-                for tg in data["intents"]:
-                    if tg["intent"] == intent:
-                        responses = tg["responses"]
-                print(f"{random.choice(responses)}   (Category: {intent})")
-
-            else:
-                print("Please rephrase it!")
-                try:
-                    with open('exceptions.txt') as f:
-                        if inp not in f.read():
-                            with open('exceptions.txt', 'a') as f:
-                                f.write(
-                                    f'{inp}  (Predicted category: {intent})\n')
-                except:
-                    file = open('exceptions.txt', 'x')
-                    with open('exceptions.txt') as f:
-                        if inp not in f.read():
-                            with open('exceptions.txt', 'a') as f:
-                                f.write(
-                                    f'{inp}  (Predicted category: {intent})\n')
+    results_index = numpy.argmax(results)
+    intent = labels[results_index]
+    if results[results_index] > 0.9:
+        for tg in data["intents"]:
+            if tg["intent"] == intent:
+                responses = tg["responses"]
+        return f"{random.choice(responses)}"
+    else:
+        return f"{random.choice(invalid_responses)}"
 
 
-chat()
+#This is a test to make a new model
+#hiddenlayers = ["dense", "dense", "dense"]
+#createNewModel("bob", 500, 50, 0.001, hiddenlayers)
+#The current active model (pass in the name from the UI)
+#print(chat("bob", "Hello"))
+
+if (sys.argv[1] == "chat"):
+    if (len(sys.argv) == 4):
+        print(chat(sys.argv[2], sys.argv[3]))
+    else:
+        print("To few or to many arugments were passed for function chat")
+elif (sys.argv[1] == "new_model"):
+    if (len(sys.argv) == 7):
+        print(createNewModel(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6]))
+    else:
+        print("To few or to many arugments were passed for function chat")
+elif (sys.argv[1] == "train"):
+    if (len(sys.argv) == 6):
+        print(train(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5]))
+    else:
+        print("To few or to many arugments were passed for function chat")
+else:
+    print(f"{sys.argv[1]} is not a valid function in chatbot.")

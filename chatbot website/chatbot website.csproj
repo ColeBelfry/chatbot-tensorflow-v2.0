@@ -7,4 +7,9 @@
     <RootNamespace>chatbot_website</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj" />
+    <ProjectReference Include="..\PythonInterpreter\PythonInterpreter.csproj" />
+  </ItemGroup>
+
 </Project>
