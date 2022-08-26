@@ -82,10 +82,10 @@ def createNewModel(model_name, num_epochs, batch_size_val, learning_rate_val, hi
     if (len(hidden_layers) > 0):
         # Passed in layers
         for layer in hidden_layers:
-            if layer == "dense":
-                model.add(tf.keras.layers.Dense(8))
-            elif layer == "flatten":
-                model.add(tf.keras.layers.Flatten())
+            if layer[0] == "dense":
+                model.add(tf.keras.layers.Dense(layer[1]))
+            elif layer[0] == "flatten":
+                model.add(tf.keras.layers.Flatten(layer[1]))
     else:
         # Default layers
         model.add(tf.keras.layers.Dense(8))
@@ -172,14 +172,22 @@ if (sys.argv[1] == "chat"):
     else:
         print("To few or to many arugments were passed for function chat")
 elif (sys.argv[1] == "new_model"):
-    if (len(sys.argv) == 7):
-        print(createNewModel(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6]))
+    if (len(sys.argv) == 6):
+        print(createNewModel(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], []))
+    elif (len(sys.argv) >= 8):
+        full_tuple = sys.argv[6:]
+        first_half = full_tuple[:int(len(full_tuple)/2)]
+        last_half = full_tuple[int(len(full_tuple)/2):]
+        real_tuple = []
+        for (first, last) in zip(first_half, last_half):
+            real_tuple.append((first, last))
+        print(createNewModel(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], real_tuple))
     else:
-        print("To few or to many arugments were passed for function chat")
+        print("To few arugments were passed for function createNewModel")
 elif (sys.argv[1] == "train"):
     if (len(sys.argv) == 6):
         print(train(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5]))
     else:
-        print("To few or to many arugments were passed for function chat")
+        print("To few or to many arugments were passed for function train")
 else:
     print(f"{sys.argv[1]} is not a valid function in chatbot.")

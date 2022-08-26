@@ -33,14 +33,14 @@ namespace PythonInterpreter
 			}
 		}
 
-		public string ExecuteCreateModelFunction(string modelName, int epochsNum, int batchSizeNum, int learningRateNum, string[] hiddenLayers)
+		public string ExecuteCreateModelFunction(string modelName, int epochsNum, int batchSizeNum, int learningRateNum, string[] hiddenLayers, int[] hiddenLayersValue)
 		{
 			try
 			{
                 ProcessStartInfo info = new ProcessStartInfo
                 {
                     FileName = GetPythonExe(),
-                    Arguments = string.Format("{0} {1} {2} {3} {4} {5} {6}", ".\\chatbot.py", "new_model", modelName, epochsNum, batchSizeNum, learningRateNum, hiddenLayers),
+                    Arguments = string.Format("{0} {1} {2} {3} {4} {5} {6} {7}", ".\\chatbot.py", "new_model", modelName, epochsNum, batchSizeNum, learningRateNum, string.Join(" ", hiddenLayers), string.Join(" ", hiddenLayersValue)),
                     WorkingDirectory = GetSolution(),
                     UseShellExecute = false,
                     RedirectStandardOutput = true
