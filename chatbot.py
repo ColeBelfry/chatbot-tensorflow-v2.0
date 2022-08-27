@@ -93,7 +93,7 @@ def createNewModel(model_name, num_epochs, batch_size_val, learning_rate_val, hi
         model.add(tf.keras.layers.Dense(8))
     model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
 
-    trainNew(model, name, num_epochs, batch_size_val, learning_rate_val)
+    trainNew(model, model_name, num_epochs, batch_size_val, learning_rate_val)
     # run this command to get the summary of the model
     # model.summary()
 
@@ -109,7 +109,7 @@ def train(model_name, num_epochs, batch_size_val, learning_rate_val):
     model.compile(optimizer=opt,
                   loss="categorical_crossentropy", metrics=["accuracy"])
     model.fit(training, output, epochs=num_epochs, batch_size=batch_size_val)
-    model.save('KerasModels\\' + name + '.h5')
+    model.save('KerasModels\\' + model_name + '.h5')
 
 def trainNew(model, model_name, num_epochs, batch_size_val, learning_rate_val):
     #sets the learning rate for the adam optimizer
@@ -117,7 +117,7 @@ def trainNew(model, model_name, num_epochs, batch_size_val, learning_rate_val):
     model.compile(optimizer=opt,
                   loss="categorical_crossentropy", metrics=["accuracy"])
     model.fit(training, output, epochs=num_epochs, batch_size=batch_size_val)
-    model.save('KerasModels\\' + name + '.h5')
+    model.save('KerasModels\\' + model_name + '.h5')
 
 def loadModel(model_name):
     try:
