@@ -167,27 +167,33 @@ def chat(model_name, user_input):
 #print(chat("bob", "Hello"))
 
 if (sys.argv[1] == "chat"):
+    # Looking to chat, check if we have the right ammount of arguments
     if (len(sys.argv) == 4):
         print(chat(sys.argv[2], sys.argv[3]))
     else:
         print("To few or to many arugments were passed for function chat")
 elif (sys.argv[1] == "new_model"):
+    # Looking to create a new model, did we pass hidden layers or not?
     if (len(sys.argv) == 6):
         print(createNewModel(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], []))
     elif (len(sys.argv) >= 8):
+        # Convert the hidden layer strings to tuples for easy use in adding them to the model
         full_tuple = sys.argv[6:]
         first_half = full_tuple[:int(len(full_tuple)/2)]
         last_half = full_tuple[int(len(full_tuple)/2):]
         real_tuple = []
+        # Combine both halves into a single tuple that gets appended
         for (first, last) in zip(first_half, last_half):
             real_tuple.append((first, last))
         print(createNewModel(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], real_tuple))
     else:
         print("To few arugments were passed for function createNewModel")
 elif (sys.argv[1] == "train"):
+    # Looking to train a model, check if we have the right ammount of arguments
     if (len(sys.argv) == 6):
         print(train(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5]))
     else:
         print("To few or to many arugments were passed for function train")
 else:
+    # Unable to recognize the inputted function request identifier
     print(f"{sys.argv[1]} is not a valid function in chatbot.")
