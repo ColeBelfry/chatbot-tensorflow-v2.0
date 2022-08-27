@@ -46,6 +46,15 @@ namespace chatbot_website.Controllers
             intentModel.IntentName = intent_name;
             var newIntent = new Intent() { intent = intent_name, patterns = intentModel.Patterns, responses = intentModel.Responses};
             //Put the actuall working file path here for Intent.json
+            var intentsList = json_editor.GetJsonListItents("Intent.json");
+            foreach(var intent in intentsList)
+            {
+                if(intent.intent == intent_name)
+                {
+                    //if intent already exists
+                    return View("NewIntent", intentModel);
+                }
+            }
             json_editor.AddToJson("Intent.json", newIntent);
             //Call a method to retrain the models
 			return View("ChatWindow", chatModel);

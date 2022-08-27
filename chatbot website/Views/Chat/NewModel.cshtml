@@ -1,14 +1,15 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-}
 @model ChatBotViewModel
+@{
+    var model = new ChatBotViewModel();
+}
 @Html.Partial("_Sidebar")
 
-<div class="container">
-    <form id="new_Layer" action="Chat/NewLayer" method="post"></form>
-    <form id="new_model" action="Chat/NewModel" method="post"></form>
+<main role="main" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <form id="new_Layer" action="NewLayer" method="post"></form>
+    <form id="new_model" action="NewModel" method="post"></form>
     <div class="p-4 p-md-5 rounded-3 bg-light align-content-center">
         <div class="row g-3">
             <div class="col-12">
@@ -27,29 +28,35 @@
                 <label class="form-label" for="mLearningRate">Learning Rate:</label>
                 <input name="learning_rate" type="text" class="form-control" id="mLearningRate" form="new_model" required />
             </div>
-            <div class="col-12">
+            <h3>New Hidden Layer</h3>
+            <div class="col-md-6">
                 <label class="form-label" for="mHiddenLayers">Layer Type:</label>
                 <input name="layer_type" type="text" class="form-control" id="mHiddenLayers" form="new_layer" />
+              
+            </div>
+            <div class="col-md-6">
                 <label class="form-label" for="mHiddenLayers2"> Associated Value:</label>
-                <input name="layer_value" type="text" class="form-control" id="mHiddenLayers2" form="new_layer" placeholder="Neurons, Dropout Rate, etc..."/>
+                <input name="layer_value" type="text" class="form-control" id="mHiddenLayers2" form="new_layer" placeholder="Neurons, Dropout Rate, etc..." />
+            </div>
+            <div class="col-12">
                 <label class="form-label" for="mHiddenLayers3">Hidden Layers:</label>
                 <input name="learning_rate" type="submit" class="form-control" id="mHiddenLayers3" value="Add Layer" form="new_layer" />
 
-                @if(Model.HiddenLayers.Count > 0){
+                @if(model.HiddenLayers.Count() > 0){
                     @foreach(var layer in Model.HiddenLayers){
                         <div>
                             <p>Layer Type: @layer.Item1 </p> 
                             @switch(layer.Item1){
                                 case "dense":
-                                    <p>Neurons: @layer.Item2</p>
+                                    <p class="mb-0">Neurons: @layer.Item2</p>
                                     break;
                                 case "dropout":
-                                    <p>Dropout Rate: @layer.Item2</p>
+                                    <p class="mb-0">Dropout Rate: @layer.Item2</p>
                                     break;
                                 case "flatten":
                                     break;
                                 default:
-                                    <p>Layer type was not found</p>
+                                    <p class="mb-0">Layer type was not found</p>
                                     break;
                             }
                         </div>
@@ -61,4 +68,4 @@
             </div>
         </div>
     </div>
-</div>
+</main>

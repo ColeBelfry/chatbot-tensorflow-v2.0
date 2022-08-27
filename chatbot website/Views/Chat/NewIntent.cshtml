@@ -7,11 +7,11 @@
 @model IntentViewModel
 @Html.Partial("_Sidebar")
 
-<div class="container">
-    <form id="new_intent" action="Chat/NewIntent" method="post"></form>
-    <form id="new_pattern" action="Chat/NewPattern" method="post"></form>
-    <form id="new_response" action="Chat/NewResponse" method="post"></form>
-    <div class="p-4 p-md-5 rounded-3 bg-light align-content-center">
+<main role="main" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <form id="new_intent" action="NewIntent" method="post"></form>
+    <form id="new_pattern" action="NewPattern" method="post"></form>
+    <form id="new_response" action="NewResponse" method="post"></form>
+    <div class="container p-4 p-md-5 rounded-3 bg-light align-content-center">
         <div class="row g-3">
             <div class="col-12">
                 <label class="form-label" for="ipattern">New Pattern:</label>
@@ -20,12 +20,10 @@
             </div>
             <div class="col-12">
                 "patterns": [
-                @{//this isn't done yet
-                }
-                @if(Model.Patterns.Count > 0){
+                @if(Model.Patterns.Count() > 0){
                     foreach (var pattern in Model.Patterns)
                     {
-                        <p>"@pattern",</p>
+                        <p class="mb-0">"@pattern",</p>
                     }
                 }
                 ],
@@ -40,19 +38,19 @@
                 @{
                     //this isn't done yet
                 }
-                @if(Model.Responses.Count > 0){
+                @if(Model.Responses.Count() > 0){
                     @foreach (var response in Model.Responses)
                     {
-                        <p>"@response",</p>
+                        <p class="mb-0">"@response",</p>
                     }
                 }
                 ],
             </div>
             <div class="col-12">
                 <label class="form-label" for="iIntent">New Intent:</label>
-                <input name="intent_name" type="text" class="form-control" id="iIntent" form="new_intent" value="intent" required />
+                <input name="intent_name" type="text" class="form-control" id="iIntent" form="new_intent" placeholder="Ex: PoliteGreeting" required />
                 <input type="submit" form="new_intent" value="Add Intent" />
             </div>
         </div>
     </div>    
-</div>
+</main>

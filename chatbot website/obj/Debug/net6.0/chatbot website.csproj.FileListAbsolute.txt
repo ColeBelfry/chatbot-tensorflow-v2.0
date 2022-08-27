@@ -96,3 +96,22 @@ C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\
 C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.pdb
 C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\chatbot website.genruntimeconfig.cache
 C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\obj\Debug\net6.0\ref\chatbot website.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\System.Runtime.Caching.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\cbelfry\source\repos\chatbot-tensorflow-v2.0\chatbot website\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
