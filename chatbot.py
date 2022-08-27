@@ -168,10 +168,10 @@ def chat(model_name, user_input):
 
 if (sys.argv[1] == "chat"):
     # Looking to chat, check if we have the right ammount of arguments
-    if (len(sys.argv) == 4):
-        print(chat(sys.argv[2], sys.argv[3]))
+    if (len(sys.argv) >= 4):
+        print(chat(sys.argv[2], "".join(sys.argv[3:])))
     else:
-        print("To few or to many arugments were passed for function chat")
+        print("To few arugments were passed for function chat")
 elif (sys.argv[1] == "new_model"):
     # Looking to create a new model, did we pass hidden layers or not?
     if (len(sys.argv) == 6):
