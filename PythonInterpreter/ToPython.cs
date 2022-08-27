@@ -132,6 +132,12 @@ namespace PythonInterpreter
                     pythonLocation = entry;
 					break;
                 }
+				// Special case, will find the first python scripts path and move up a directory level
+				else if(entry.ToLower().Contains("python") && !entry.ToLower().Contains("scripts"))
+				{
+					pythonLocation = Directory.GetParent(entry).FullName;
+					break;
+				}
             }
 
 			if (string.IsNullOrEmpty(pythonLocation))
