@@ -49,7 +49,7 @@ namespace PythonInterpreter
 		/// <param name="hiddenLayers">Name types of the hidden layer, optional</param>
 		/// <param name="hiddenLayersValue">Number values used in the hidden layer, optional</param>
 		/// <returns>The outcome of the operation</returns>
-		public string ExecuteCreateModelFunction(string modelName, int epochsNum, int batchSizeNum, int learningRateNum, string[]? hiddenLayers, int[]? hiddenLayersValue)
+		public string ExecuteCreateModelFunction(string modelName, int epochsNum, int batchSizeNum, double learningRateNum, string[]? hiddenLayers, int[]? hiddenLayersValue)
 		{
 			try
 			{
@@ -86,7 +86,7 @@ namespace PythonInterpreter
 		/// <param name="batchSizeNum">Batch size number</param>
 		/// <param name="learningRateNum">Learning rate number</param>
 		/// <returns>The outcome of the operation</returns>
-		public string ExecuteTrainModelFunction(string modelName, int epochsNum, int batchSizeNum, int learningRateNum)
+		public string ExecuteTrainModelFunction(string modelName, int epochsNum, int batchSizeNum, double learningRateNum)
 		{
             try
             {
