@@ -21,7 +21,6 @@ namespace DAL.Implementations
 		public void AddChatBot(ChatBot chatBot)
 		{
 			context.Bots.Add(chatBot);
-			throw new NotImplementedException();
 		}
 
 		public List<ChatBot> GetAllChatBots()
@@ -32,17 +31,21 @@ namespace DAL.Implementations
 
 		public ChatBot GetChatBotById(int id)
 		{
-			throw new NotImplementedException();
+			var bot = context.Bots.Where(b => b.Id == id).First();
+			return bot;
 		}
 
 		public ChatBot GetChatBotByName(string name)
 		{
-			throw new NotImplementedException();
+			var bot = context.Bots.Where(b => b.Name == name).First();
+			return bot;
 		}
 
-		public void RemoveChatBot(ChatBot chatBot)
+		public void RemoveChatBot(int id)
 		{
-			throw new NotImplementedException();
+			var bot = context.Bots.Where(b => b.Id == id).First();
+			context.Bots.Remove(bot);
+			context.SaveChanges();
 		}
 	}
 }

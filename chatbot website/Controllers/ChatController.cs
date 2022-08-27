@@ -16,6 +16,7 @@ namespace chatbot_website.Controllers
 		static ChatListViewModel chatModel = new ChatListViewModel();
         static IntentViewModel intentModel = new IntentViewModel();
         static ChatBotViewModel chatBotModel = new ChatBotViewModel();
+        static string currentBot;
         JsonEditor json_editor = new JsonEditor();
 
         public ChatController(ChatBotContext context)
@@ -27,10 +28,16 @@ namespace chatbot_website.Controllers
             return View(chatModel);
         }
 
-        [HttpPost]
+		public IActionResult ChangeModel(string botName)
+		{
+            currentBot = botName;
+			return View("ChatWindow",chatModel);
+		}
+
+		[HttpPost]
         public IActionResult ChatWindow(string usermsg)
         {
-            string botRes = interpreter.ExecuteChatFunction("bob", usermsg);
+            string botRes = interpreter.ExecuteChatFunction(currentBot, usermsg);
             chatModel.ChatPairs.Add((usermsg, botRes));
             return View(chatModel);
         }
@@ -56,6 +63,8 @@ namespace chatbot_website.Controllers
                 }
             }
             json_editor.AddToJson("Intent.json", newIntent);
+            var bot = dal.GetChatBotByName(currentBot);
+            interpreter.ExecuteTrainModelFunction(bot.Name, bot.Epochs, bot.BatchSize, bot.LearingRate);
             //Call a method to retrain the models
 			return View("ChatWindow", chatModel);
 		}

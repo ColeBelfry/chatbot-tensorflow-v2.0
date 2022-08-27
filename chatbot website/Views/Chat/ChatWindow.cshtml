@@ -38,8 +38,8 @@
                 </div>
                 <div class="card-footer">
                     <form name="message" action="/Chat/ChatWindow" method="post" class="p-4 p-md-5 rounded-3 bg-light align-content-center">
-                        <input name="usermsg" type="text" id="usermsg" />
-                        <input name="submitmsg" type="submit" id="submitmsg" value="Send" />
+                        <input class="form-control" name="usermsg" type="text" id="usermsg" />
+                        <input class="form-control" name="submitmsg" type="submit" id="submitmsg" value="Send" />
                     </form>
                 </div>
             </div>
@@ -49,11 +49,11 @@
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Select Chat Bot
                 </button>
-                <form name="BotSelect" action="/Chat/ChatWindow">
+                <form name="BotSelect" action="/Chat/ChatWindow method="post">
                     <ul class="dropdown-menu">
                         @foreach (var bot in Model.Bots)
                         {
-                            <li><input class="dropdown-item" name="botname" value="@bot.Name" type="submit">@bot.Name/></li>
+                            <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="/Chat/ChangeModel/@bot.Name">@bot.Name</a>></li>
                         }
                     </ul>
                 </form>
