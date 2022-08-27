@@ -1,22 +1,36 @@
-﻿using IronPython.Hosting;
-using Microsoft.Scripting.Hosting;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace PythonInterpreter
 {
 	public class ToPython
 	{
-		private string solutionPath = Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName;
-
+		/// <summary>
+		/// Calls the python function chat.
+		/// </summary>
+		/// <param name="modelName">Name of the model to be used/loaded</param>
+		/// <param name="userInput">Input from the user</param>
+		/// <returns>The chatbot's message in response to <paramref name="userInput"/></returns>
 		public string ExecuteChatFunction(string modelName, string userInput)
 		{
 			try
 			{
-				ScriptEngine engine = Python.CreateEngine();
-				ScriptScope scope = engine.CreateScope();
-				engine.ExecuteFile(Path.Join(solutionPath, "\\chatbot-tensorflow-v2.0\\chatbot.py"), scope);
-				dynamic function = scope.GetVariable("chat");
-				return function(modelName, userInput);
+				ProcessStartInfo info = new ProcessStartInfo
+				{
+					FileName = GetPythonExe(),
+					Arguments = string.Format("{0} {1} {2} {3}", ".\\chatbot.py", "chat", modelName, userInput),
+					WorkingDirectory = GetSolution(),
+					UseShellExecute = false,
+					RedirectStandardOutput = true
+				};
+
+				using(Process process = Process.Start(info))
+				{
+					using(StreamReader reader = process.StandardOutput)
+					{
+						string output = reader.ReadToEnd();
+						return output;
+					}
+				}
 			}
 			catch (Exception ex)
 			{
@@ -24,36 +38,128 @@ namespace PythonInterpreter
 				return "Encountered error: " + ex;
 			}
 		}
-		public void ExecuteCreateModelFunction(string modelName, int epochsNum, int batchSizeNum, int learningRateNum, (string, int) hiddenLayers)
+
+		/// <summary>
+		///	Calls the python function createNewModel.
+		/// </summary>
+		/// <param name="modelName">Name of the model to be used</param>
+		/// <param name="epochsNum">Number of epochs</param>
+		/// <param name="batchSizeNum">Batch size number</param>
+		/// <param name="learningRateNum">Learning rate number</param>
+		/// <param name="hiddenLayers">Name types of the hidden layer, optional</param>
+		/// <param name="hiddenLayersValue">Number values used in the hidden layer, optional</param>
+		/// <returns>The outcome of the operation</returns>
+		public string ExecuteCreateModelFunction(string modelName, int epochsNum, int batchSizeNum, double learningRateNum, string[]? hiddenLayers, int[]? hiddenLayersValue)
 		{
 			try
 			{
-				ScriptEngine engine = Python.CreateEngine();
-				ScriptScope scope = engine.CreateScope();
-				engine.ExecuteFile(solutionPath + "\\chatbot-tensorflow-v2.0\\chatbot.py", scope);
-				dynamic function = scope.GetVariable("createNewModel");
-				function(modelName, epochsNum, batchSizeNum, learningRateNum, hiddenLayers);
+                ProcessStartInfo info = new ProcessStartInfo
+                {
+                    FileName = GetPythonExe(),
+                    Arguments = string.Format("{0} {1} {2} {3} {4} {5} {6} {7}", ".\\chatbot.py", "new_model", modelName, epochsNum, batchSizeNum, learningRateNum, string.Join(" ", (hiddenLayers != null)? hiddenLayers: string.Empty), string.Join(" ", (hiddenLayersValue != null) ? hiddenLayersValue : string.Empty)),
+                    WorkingDirectory = GetSolution(),
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true
+                };
+
+				using (Process process = Process.Start(info))
+				{
+					using (StreamReader reader = process.StandardOutput)
+					{
+						string output = reader.ReadToEnd();
+						return output;
+					}
+				}
 			}
 			catch (Exception ex)
 			{
 				Debug.WriteLine(ex.Message);
-			}
+                return "Encountered error: " + ex;
+            }
 		}
 
-		public void ExecuteTrainModelFunction(string modelName, int epochsNum, int batchSizeNum, int learningRateNum)
+		/// <summary>
+		/// Calls the python function train.
+		/// </summary>
+		/// <param name="modelName">Name of the model</param>
+		/// <param name="epochsNum">Number of epochs</param>
+		/// <param name="batchSizeNum">Batch size number</param>
+		/// <param name="learningRateNum">Learning rate number</param>
+		/// <returns>The outcome of the operation</returns>
+		public string ExecuteTrainModelFunction(string modelName, int epochsNum, int batchSizeNum, double learningRateNum)
 		{
-			try
+            try
+            {
+                ProcessStartInfo info = new ProcessStartInfo
+                {
+                    FileName = GetPythonExe(),
+                    Arguments = string.Format("{0} {1} {2} {3} {4} {5}", ".\\chatbot.py", "train", modelName, epochsNum, batchSizeNum, learningRateNum),
+                    WorkingDirectory = GetSolution(),
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true
+                };
+
+                using (Process process = Process.Start(info))
+                {
+                    using (StreamReader reader = process.StandardOutput)
+                    {
+                        string output = reader.ReadToEnd();
+                        return output;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return "Encountered error: " + ex;
+            }
+        }
+
+		/// <summary>
+		/// Gets the path to your python executable file using the enviroment variables.
+		/// </summary>
+		/// <returns>A string that represents the path to your python.exe</returns>
+		/// <exception cref="Exception"></exception>
+		private string GetPythonExe()
+		{
+			string[] entries = Environment.GetEnvironmentVariable("path").Split(';');
+			string pythonLocation = null;
+			foreach (string entry in entries)
 			{
-				ScriptEngine engine = Python.CreateEngine();
-				ScriptScope scope = engine.CreateScope();
-				engine.ExecuteFile(solutionPath + "\\chatbot-tensorflow-v2.0\\chatbot.py", scope);
-				dynamic function = scope.GetVariable("train");
-				function(modelName, epochsNum, batchSizeNum, learningRateNum);
-			}
-			catch (Exception ex)
+				// Must contain python and not scripts
+                if (entry.ToLower().Contains("python") && !entry.ToLower().Contains("scripts"))
+                {
+                    pythonLocation = entry;
+					break;
+                }
+            }
+
+			if (string.IsNullOrEmpty(pythonLocation))
 			{
-				Debug.WriteLine(ex.Message);
+				throw new Exception("Unable to find a python executable path, please make sure you have python installed.");
 			}
+			return pythonLocation + "python.exe";
+		}
+
+		/// <summary>
+		/// Gets the path to the solution folder.
+		/// </summary>
+		/// <returns>A string that represents the path to the solution folder</returns>
+		/// <exception cref="Exception"></exception>
+		private string GetSolution()
+		{
+			DirectoryInfo directory = new DirectoryInfo(Directory.GetCurrentDirectory());
+			while (directory != null && !directory.GetFiles("*.sln").Any())
+			{
+				// Travel up in directory levels
+				directory = directory.Parent;
+			}
+
+			if (directory == null)
+			{
+				throw new Exception("Unable to find the .sln file for this project.");
+			}
+			return directory.FullName;
 		}
 	}
 }

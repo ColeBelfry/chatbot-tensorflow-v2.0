@@ -14,6 +14,7 @@ import random
 import json
 import nltk
 from nltk.stem.lancaster import LancasterStemmer
+import sys
 
 invalid_responses = ["Please rephrase that.", "That is weird, I do not recognize that.", "Try again later.", "Could not come up with a response, try again."]
 
@@ -71,36 +72,54 @@ output = numpy.array(output)
 
 # creating the neural net
 
-def createNewModel(name, num_epochs, batch_size_val, learning_rate_val, hidden_layers):
+def createNewModel(model_name, num_epochs, batch_size_val, learning_rate_val, hidden_layers):
+    # Check if model already exists
+    model = loadModel(model_name)
+    if (type(model) is not str): return f"Model with name {model_name} already exists"
+
     model = tf.keras.Sequential()
     model.add(tf.keras.layers.InputLayer(input_shape=(len(training[0]),)))
-    #layer is a tuple of (string, int)
-    for layer in hidden_layers:
-        if layer[0] == "dense":
-            model.add(tf.keras.layers.Dense(layer[1]))
-        elif layer[0] == "flatten":
-            model.add(tf.keras.layers.Flatten())
-        elif layer[0] == "dropout":
-            model.add(tf.keras.layers.Dropout(rate=layer[1]))
-        else:
-            model.add(tf.keras.layers.Dense(8))
-            model.add(tf.keras.layers.Dense(8))
-            model.add(tf.keras.layers.Dense(8))
+    if (len(hidden_layers) > 0):
+        # Passed in layers
+        for layer in hidden_layers:
+            if layer[0] == "dense":
+                model.add(tf.keras.layers.Dense(layer[1]))
+            elif layer[0] == "flatten":
+                model.add(tf.keras.layers.Flatten(layer[1]))
+            elif layer[0] == "dropout":
+                model.add(tf.keras.layers.Dropout(rate=layer[1]))
+    else:
+        # Default layers
+        model.add(tf.keras.layers.Dense(8))
+        model.add(tf.keras.layers.Dense(8))
+        model.add(tf.keras.layers.Dense(8))
     model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
 
-    train(model, name, num_epochs, batch_size_val, learning_rate_val)
+    trainNew(model, model_name, num_epochs, batch_size_val, learning_rate_val)
     # run this command to get the summary of the model
     # model.summary()
 
 # ----------------------------------------------------------------------
 #epoch = 1000  batch size = 100 optimiser = "adam" learning_rate = 0.001
-def train(model, name, num_epochs, batch_size_val, learning_rate_val):
+def train(model_name, num_epochs, batch_size_val, learning_rate_val):
+    # Valid model check, does it exist?
+    model = loadModel(model_name)
+    if (type(model) is str): return model
+
     #sets the learning rate for the adam optimizer
     opt = keras.optimizers.Adam(learning_rate = learning_rate_val)
     model.compile(optimizer=opt,
                   loss="categorical_crossentropy", metrics=["accuracy"])
     model.fit(training, output, epochs=num_epochs, batch_size=batch_size_val)
-    model.save('KerasModels\\' + name + '.h5')
+    model.save('KerasModels\\' + model_name + '.h5')
+
+def trainNew(model, model_name, num_epochs, batch_size_val, learning_rate_val):
+    #sets the learning rate for the adam optimizer
+    opt = keras.optimizers.Adam(learning_rate = learning_rate_val)
+    model.compile(optimizer=opt,
+                  loss="categorical_crossentropy", metrics=["accuracy"])
+    model.fit(training, output, epochs=num_epochs, batch_size=batch_size_val)
+    model.save('KerasModels\\' + model_name + '.h5')
 
 def loadModel(model_name):
     try:
@@ -108,7 +127,7 @@ def loadModel(model_name):
         return model
     except:
         #model not found exception
-        print("model: " + model_name + " could not be found")
+        return "model: " + model_name + " could not be found"
 
 
 def bag_of_words(s, words):
@@ -126,11 +145,10 @@ def bag_of_words(s, words):
 
 
 def chat(model_name, user_input):
-    try:
-        model = keras.models.load_model('KerasModels\\' + model_name + '.h5')
-    except:
-        return "A problem was encountered when loading the model, make sure you have created one first."
-
+    # Valid model check, does it exist?
+    model = loadModel(model_name)
+    if (type(model) is str): return model
+    
     results = model.predict([bag_of_words(user_input, words)])[0]
 
     results_index = numpy.argmax(results)
@@ -139,7 +157,7 @@ def chat(model_name, user_input):
         for tg in data["intents"]:
             if tg["intent"] == intent:
                 responses = tg["responses"]
-        return f"{random.choice(responses)}   (Category: {intent})"
+        return f"{random.choice(responses)}"
     else:
         return f"{random.choice(invalid_responses)}"
 
@@ -149,3 +167,35 @@ def chat(model_name, user_input):
 #createNewModel("bob", 500, 50, 0.001, hiddenlayers)
 #The current active model (pass in the name from the UI)
 #print(chat("bob", "Hello"))
+
+if (sys.argv[1] == "chat"):
+    # Looking to chat, check if we have the right ammount of arguments
+    if (len(sys.argv) == 4):
+        print(chat(sys.argv[2], sys.argv[3]))
+    else:
+        print("To few or to many arugments were passed for function chat")
+elif (sys.argv[1] == "new_model"):
+    # Looking to create a new model, did we pass hidden layers or not?
+    if (len(sys.argv) == 6):
+        print(createNewModel(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], []))
+    elif (len(sys.argv) >= 8):
+        # Convert the hidden layer strings to tuples for easy use in adding them to the model
+        full_tuple = sys.argv[6:]
+        first_half = full_tuple[:int(len(full_tuple)/2)]
+        last_half = full_tuple[int(len(full_tuple)/2):]
+        real_tuple = []
+        # Combine both halves into a single tuple that gets appended
+        for (first, last) in zip(first_half, last_half):
+            real_tuple.append((first, last))
+        print(createNewModel(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], real_tuple))
+    else:
+        print("To few arugments were passed for function createNewModel")
+elif (sys.argv[1] == "train"):
+    # Looking to train a model, check if we have the right ammount of arguments
+    if (len(sys.argv) == 6):
+        print(train(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5]))
+    else:
+        print("To few or to many arugments were passed for function train")
+else:
+    # Unable to recognize the inputted function request identifier
+    print(f"{sys.argv[1]} is not a valid function in chatbot.")
