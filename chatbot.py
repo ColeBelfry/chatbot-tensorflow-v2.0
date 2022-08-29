@@ -166,6 +166,10 @@ def chat(model_name, user_input):
     ###The current active model (pass in the name from the UI)
     #print(chat("bob", "Hello"))
     
+    
+
+
+try:
     if (sys.argv[1] == "chat"):
         # Looking to chat, check if we have the right ammount of arguments
         if (len(sys.argv) == 4):
@@ -197,12 +201,18 @@ def chat(model_name, user_input):
     else:
         # Unable to recognize the inputted function request identifier
         print(f"{sys.argv[1]} is not a valid function in chatbot.")
+except :
+    try:
+        userinput = input("Enter message:\n")
+
+        while(userinput != "exit"):
+            hiddenlayers = ["dense", "dense", "dense"]
+            createNewModel("bob", 500, 50, 0.001, hiddenlayers)
+            print(chat("bob", userinput))
+            userinput = input("Enter message:\n")
+    except :
+        pass
 
 
-userinput = input("Enter message:\n")
 
-while(userinput != "exit"):
-    hiddenlayers = ["dense", "dense", "dense"]
-    createNewModel("bob", 500, 50, 0.001, hiddenlayers)
-    print(chat("bob", userinput))
-    userinput = input("Enter message:\n")
+
