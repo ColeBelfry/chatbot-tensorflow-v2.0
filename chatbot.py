@@ -160,7 +160,7 @@ def chat(model_name, user_input):
                 responses = tg["responses"]
         return f"{random.choice(responses)}"
     else:
-        return f"{random.choice(invalid_responses)}"
+        return f"{random.choice(invalid_responses)}'
 
 
 #This is a test to make a new model
