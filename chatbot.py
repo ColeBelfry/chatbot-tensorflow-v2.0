@@ -88,9 +88,10 @@ def createNewModel(model_name, num_epochs, batch_size_val, learning_rate_val, hi
                 model.add(tf.keras.layers.Flatten(layer[1]))
     else:
         # Default layers
-        model.add(tf.keras.layers.Dense(8))
-        model.add(tf.keras.layers.Dense(8))
-        model.add(tf.keras.layers.Dense(8))
+        model.add(tf.keras.layers.Dense(12))
+        model.add(tf.keras.layers.Dense(12))
+        model.add(tf.keras.layers.Dense(12))
+        model.add(tf.keras.layers.Dense(12))
     model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
 
     trainNew(model, model_name, num_epochs, batch_size_val, learning_rate_val)
@@ -161,18 +162,17 @@ def chat(model_name, user_input):
 
 
     ##This is a test to make a new model
-    #hiddenlayers = ["dense", "dense", "dense"]
-    #createNewModel("bob", 500, 50, 0.001, hiddenlayers)
+    
     ###The current active model (pass in the name from the UI)
     #print(chat("bob", "Hello"))
-
+    
     if (sys.argv[1] == "chat"):
         # Looking to chat, check if we have the right ammount of arguments
         if (len(sys.argv) == 4):
             print(chat(sys.argv[2], sys.argv[3]))
         else:
             print("To few or to many arugments were passed for function chat")
-    elif (sys.argv[1] == "new_model"):
+    elif (sys.argv[1] == "new_model"): #if user_input.startswith("new_model")
         # Looking to create a new model, did we pass hidden layers or not?
         if (len(sys.argv) == 6):
             print(createNewModel(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], []))
@@ -199,8 +199,10 @@ def chat(model_name, user_input):
         print(f"{sys.argv[1]} is not a valid function in chatbot.")
 
 
-userinput = input("Enter message")
+userinput = input("Enter message:\n")
 
 while(userinput != "exit"):
+    hiddenlayers = ["dense", "dense", "dense"]
+    createNewModel("bob", 500, 50, 0.001, hiddenlayers)
     print(chat("bob", userinput))
-    userinput = input("Enter message")
+    userinput = input("Enter message:\n")
