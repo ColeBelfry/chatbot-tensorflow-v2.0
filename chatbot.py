@@ -154,7 +154,7 @@ def chat(model_name, user_input):
 
     results_index = numpy.argmax(results)
     intent = labels[results_index]
-    if results[results_index] > 0.2:
+    if results[results_index] > 0.4:
         for tg in data["intents"]:
             if tg["intent"] == intent:
                 responses = tg["responses"]
