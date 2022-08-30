@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using PythonInterpreter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace DAL.Data
 			{
 				return;
 			}
-
+			ToPython interpreter = new ToPython();
 			var ChatBots = new ChatBot[]
 			{
 				new ChatBot()
@@ -81,7 +82,15 @@ namespace DAL.Data
 
 			foreach(var bot in ChatBots)
 			{
+				var types = new List<string>();
+				var vals = new List<int>();
+				foreach(var hiddenLayer in bot.HiddenLayers)
+				{
+					types.Add(hiddenLayer.LayerType);
+					vals.Add(hiddenLayer.LayerValue);
+				}
 				context.Bots.Add(bot);
+				//interpreter.ExecuteCreateModelFunction(bot.Name, bot.Epochs, bot.BatchSize, bot.LearingRate, types.ToArray(), vals.ToArray());
 			}
 			context.SaveChanges();
 		}

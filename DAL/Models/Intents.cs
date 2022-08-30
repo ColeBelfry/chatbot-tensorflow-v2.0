@@ -9,5 +9,10 @@ namespace DAL.Models
 	public class Intents
 	{
 		public List<Intent> intents { get; set; }
+		public Intents() { }
+		public Intents(List<Intent> intents)
+		{
+			this.intents = intents;
+		}
 	}
 }

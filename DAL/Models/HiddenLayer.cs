@@ -11,5 +11,12 @@ namespace DAL.Models
         public int HiddenlayerId { get; set; }
         public string LayerType { get; set; }
         public int LayerValue { get; set; }
+
+        public HiddenLayer() { }
+        public HiddenLayer(string layerType, int layerValue)
+        {
+            LayerType = layerType;
+            LayerValue = layerValue;
+        }
     }
 }

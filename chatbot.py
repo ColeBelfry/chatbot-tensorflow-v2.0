@@ -166,8 +166,8 @@ def chat(model_name, user_input):
 
 
 #This is a test to make a new model
-#hiddenlayers = ["dense", "dense", "dense"]
-#createNewModel("bob", 500, 50, 0.001, hiddenlayers)
+#hiddenlayers = [("dense", 8), ("dense", 8), ("dense", 8)]
+#train("bob", 500, 50, 0.001)
 #The current active model (pass in the name from the UI)
 #print(chat("bob", "Hello"))
 try:

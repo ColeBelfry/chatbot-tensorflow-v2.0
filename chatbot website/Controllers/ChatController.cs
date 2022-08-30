@@ -26,6 +26,7 @@ namespace chatbot_website.Controllers
         }
         public IActionResult ChatWindow()
         {
+            currentBot = "bob";
             chatModel.Bots.AddRange(dal.GetAllChatBots());
             return View(chatModel);
         }
@@ -91,7 +92,7 @@ namespace chatbot_website.Controllers
         [HttpPost]
         public IActionResult NewLayer(string layer_type, string layer_value)
         {
-            var newLayer = (layer_type, int.Parse(layer_value));
+            var newLayer = new HiddenLayer(layer_type, int.Parse(layer_value));
             chatBotModel.HiddenLayers.Add(newLayer);
             return View("NewModel", chatBotModel);
         }
@@ -109,13 +110,13 @@ namespace chatbot_website.Controllers
             var val = new List<int>();
             foreach(var layer in chatBotModel.HiddenLayers)
             {
-                type.Add(layer.Item1);
-                val.Add(layer.Item2);
+                type.Add(layer.LayerType);
+                val.Add(layer.LayerValue);
             }
             interpreter.ExecuteCreateModelFunction(newChatBot.Name, newChatBot.Epochs, newChatBot.BatchSize, newChatBot.LearingRate, type.ToArray(), val.ToArray());
-			return View("ChatWindow", chatBotModel);
+			return View("ChatWindow", chatModel);
 		}
-
+        [HttpPost]
         public IActionResult RemoveModel(int id)
         {
             dal.RemoveChatBot(id);

@@ -55,6 +55,9 @@ main_bg_color {
 .inline_block {
     display: inline-block;
 }
+.inline {
+    display: inline;
+}
 
 .layer_box {
     height: 280px;

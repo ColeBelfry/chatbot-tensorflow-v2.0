@@ -5,9 +5,9 @@
 }
 @model ChatListViewModel
 @Html.Partial("_Sidebar")
-<main role="main" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+<main role="main" class="col ms-sm-auto px-md-4">
     <div class="container-fluid align-content-center">
-        <div id="chat_container inline_block">
+        <div id="chat_container inline">
             <div class="card chat_card">
                 <header class="card-header header-title">
                     <p class="card-header-title">ChatBot</p>
@@ -44,12 +44,14 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid inline_block">
+    </div>
+</main>
+<div class="col container-fluid inline">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Select Chat Bot
                 </button>
-                <form name="BotSelect" action="/Chat/ChatWindow method="post">
+                <form name="BotSelect" action="/Chat/ChatWindow" method="post">
                     <ul class="dropdown-menu">
                         @foreach (var bot in Model.Bots)
                         {
@@ -60,5 +62,3 @@
             
             </div>
         </div>
-    </div>
-</main>
