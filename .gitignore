@@ -58,3 +58,13 @@ PythonInterpreter/obj/Debug/net6.0/refint/PythonInterpreter.dll
 *.targets
 .vs/chatbot-tensorflow-v2.0/v17/TestStore/0/000.testlog
 .vs/chatbot-tensorflow-v2.0/v17/TestStore/0/testlog.manifest
+ChatBotTesting/bin/Debug/net6.0/ChatBotTesting.dll
+ChatBotTesting/bin/Debug/net6.0/ChatBotTesting.pdb
+ChatBotTesting/bin/Debug/net6.0/nunit_random_seed.tmp
+ChatBotTesting/bin/Debug/net6.0/PythonInterpreter.dll
+ChatBotTesting/bin/Debug/net6.0/PythonInterpreter.pdb
+ChatBotTesting/obj/Debug/net6.0/ChatBotTesting.csproj.AssemblyReference.cache
+ChatBotTesting/obj/Debug/net6.0/ChatBotTesting.dll
+ChatBotTesting/obj/Debug/net6.0/ChatBotTesting.pdb
+ChatBotTesting/obj/Debug/net6.0/ref/ChatBotTesting.dll
+ChatBotTesting/obj/Debug/net6.0/refint/ChatBotTesting.dll
