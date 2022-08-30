@@ -35,7 +35,7 @@ namespace ChatBotTesting
         [Test]
         public void MultipleWordChat()
         {
-            string result = interpreter.ExecuteChatFunction("bob", "What is your name?");
+            string result = interpreter.ExecuteChatFunction("TestingModel", "What is your name?");
             string[] validResponses = new string[] { "You can call me ChatBot", "Call me ChatBot", "My name is ChatBot" };
             if (string.IsNullOrEmpty(result))
             {
@@ -54,7 +54,7 @@ namespace ChatBotTesting
         [Test]
         public void EmptyChat()
         {
-            string result = interpreter.ExecuteChatFunction("bob", " ");
+            string result = interpreter.ExecuteChatFunction("TestingModel", " ");
             if (string.IsNullOrEmpty(result))
             {
                 Assert.Fail("Empty or null");
@@ -62,6 +62,35 @@ namespace ChatBotTesting
             else
             {
                 Assert.Pass();
+            }
+        }
+
+        [Test]
+        public void CanCreateModel()
+        {
+            string result = interpreter.ExecuteCreateModelFunction("TestingCreateModel", 1000, 50, 0.01, new string[] { "dense", "flatten", "dropout" }, new int[] { 8, 4, 6 });
+            if (result.Contains("trained and saved successfully") || result.Contains("already exists"))
+            {
+                Assert.Pass();
+            }
+            else
+            {
+                Assert.Fail("Unable to create a new model");
+            }
+        }
+
+        [Test]
+        public void CanTrainModel()
+        {
+            interpreter.ExecuteCreateModelFunction("TestingTrainModel", 500, 50, 0.001, new string[] { "dense", "dense" }, new int[] { 8, 8 });
+            string result = interpreter.ExecuteTrainModelFunction("TestingTrainModel", 1000, 75, 0.001);
+            if (result.Contains("trained successfully"))
+            {
+                Assert.Pass();
+            }
+            else
+            {
+                Assert.Fail("Unable to train a model");
             }
         }
     }
