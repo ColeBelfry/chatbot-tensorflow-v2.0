@@ -1,4 +1,5 @@
-﻿using DAL.Interfaces;
+﻿using DAL.Data;
+using DAL.Interfaces;
 using DAL.Models;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,41 @@ namespace DAL.Implementations
 {
 	public class ChatBotDAL : IChatBotDAL
 	{
+		ChatBotContext context;
+
+		public ChatBotDAL(ChatBotContext context)
+		{
+			this.context = context;
+		}
+
 		public void AddChatBot(ChatBot chatBot)
 		{
-			throw new NotImplementedException();
+			context.Bots.Add(chatBot);
 		}
 
 		public List<ChatBot> GetAllChatBots()
 		{
-			throw new NotImplementedException();
+			var chatbots = context.Bots.ToList();
+			return chatbots;
 		}
 
 		public ChatBot GetChatBotById(int id)
 		{
-			throw new NotImplementedException();
+			var bot = context.Bots.Where(b => b.Id == id).First();
+			return bot;
 		}
 
 		public ChatBot GetChatBotByName(string name)
 		{
-			throw new NotImplementedException();
+			var bot = context.Bots.Where(b => b.Name == name).First();
+			return bot;
 		}
 
-		public void RemoveChatBot(ChatBot chatBot)
+		public void RemoveChatBot(int id)
 		{
-			throw new NotImplementedException();
+			var bot = context.Bots.Where(b => b.Id == id).First();
+			context.Bots.Remove(bot);
+			context.SaveChanges();
 		}
 	}
 }

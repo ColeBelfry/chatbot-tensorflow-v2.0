@@ -86,6 +86,8 @@ def createNewModel(model_name, num_epochs, batch_size_val, learning_rate_val, hi
                 model.add(tf.keras.layers.Dense(layer[1]))
             elif layer[0] == "flatten":
                 model.add(tf.keras.layers.Flatten(layer[1]))
+            elif layer[0] == "dropout":
+                model.add(tf.keras.layers.Dropout(rate=layer[1]))
     else:
         # Default layers
         model.add(tf.keras.layers.Dense(12))
