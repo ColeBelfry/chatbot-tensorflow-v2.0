@@ -44,8 +44,10 @@ namespace DAL.Implementations
 		public void RemoveChatBot(int id)
 		{
 			var bot = context.Bots.Where(b => b.Id == id).First();
+			File.Delete("./KerasModels/" + bot.Name + ".h5");
 			context.Bots.Remove(bot);
 			context.SaveChanges();
+			
 		}
 	}
 }

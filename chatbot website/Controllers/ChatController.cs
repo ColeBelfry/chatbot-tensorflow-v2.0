@@ -6,6 +6,7 @@ using DAL.Interfaces;
 using DAL.Models;
 using Microsoft.AspNetCore.Mvc;
 using PythonInterpreter;
+using static IronPython.Modules._ast;
 
 namespace chatbot_website.Controllers
 {
@@ -52,8 +53,9 @@ namespace chatbot_website.Controllers
 		{
             intentModel.IntentName = intent_name;
             var newIntent = new Intent() { intent = intent_name, patterns = intentModel.Patterns, responses = intentModel.Responses};
-            //Put the actuall working file path here for Intent.json
-            var intentsList = json_editor.GetJsonListItents("Intent.json");
+            //Put the actual working file path here for Intent.json
+            var json_path = Directory.GetParent(Directory.GetCurrentDirectory()) + "/Intent.json";
+            var intentsList = json_editor.GetJsonListItents(json_path);
             foreach(var intent in intentsList)
             {
                 if(intent.intent == intent_name)
@@ -62,10 +64,12 @@ namespace chatbot_website.Controllers
                     return View("NewIntent", intentModel);
                 }
             }
-            json_editor.AddToJson("Intent.json", newIntent);
-            var bot = dal.GetChatBotByName(currentBot);
-            interpreter.ExecuteTrainModelFunction(bot.Name, bot.Epochs, bot.BatchSize, bot.LearingRate);
-            //Call a method to retrain the models
+            json_editor.AddToJson(json_path, newIntent);
+            var bots = dal.GetAllChatBots();
+            foreach(var bot in bots)
+            {
+				interpreter.ExecuteTrainModelFunction(bot.Name, bot.Epochs, bot.BatchSize, bot.LearingRate);
+			}
 			return View("ChatWindow", chatModel);
 		}
 
@@ -83,17 +87,38 @@ namespace chatbot_website.Controllers
 			return View("NewIntent", intentModel);
 		}
 
+        [HttpPost]
+        public IActionResult NewLayer(string layer_type, string layer_value)
+        {
+            var newLayer = (layer_type, int.Parse(layer_value));
+            chatBotModel.HiddenLayers.Add(newLayer);
+            return View("NewModel", chatBotModel);
+        }
+
 		public IActionResult NewModel()
         {
-            return View();
+            return View(chatBotModel);
         }
         [HttpPost]
 		public IActionResult NewModel(string name, int epochs, int batch_size, double learning_rate)
 		{
             var newChatBot = new ChatBot() { Name = name, Epochs = epochs, BatchSize = batch_size, LearingRate = learning_rate, HiddenLayers = chatBotModel.HiddenLayers};
             dal.AddChatBot(newChatBot);
-            //Call a method to train the model
+            var type = new List<string>();
+            var val = new List<int>();
+            foreach(var layer in chatBotModel.HiddenLayers)
+            {
+                type.Add(layer.Item1);
+                val.Add(layer.Item2);
+            }
+            interpreter.ExecuteCreateModelFunction(newChatBot.Name, newChatBot.Epochs, newChatBot.BatchSize, newChatBot.LearingRate, type.ToArray(), val.ToArray());
 			return View("ChatWindow", chatBotModel);
+		}
+
+        public IActionResult RemoveModel(int id)
+        {
+            dal.RemoveChatBot(id);
+            return View("ChatView", chatModel);
 		}
 	}
 }

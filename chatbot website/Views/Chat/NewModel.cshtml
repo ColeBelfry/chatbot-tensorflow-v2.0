@@ -2,9 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @model ChatBotViewModel
-@{
-    var model = new ChatBotViewModel();
-}
+
 @Html.Partial("_Sidebar")
 
 <main role="main" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -40,13 +38,17 @@
             </div>
             <div class="col-12">
                 <label class="form-label" for="mHiddenLayers3">Hidden Layers:</label>
-                <input name="learning_rate" type="submit" class="form-control" id="mHiddenLayers3" value="Add Layer" form="new_layer" />
-
-                @if(model.HiddenLayers.Count() > 0){
-                    @foreach(var layer in Model.HiddenLayers){
+                <input type="submit" class="form-control" id="mHiddenLayers3" value="Add Layer" form="new_layer" />     
+            </div>
+            <div class="layer_box ">
+                @if (Model.HiddenLayers.Count() > 0)
+                {
+                    @foreach (var layer in Model.HiddenLayers)
+                    {
                         <div>
-                            <p>Layer Type: @layer.Item1 </p> 
-                            @switch(layer.Item1){
+                            <p>Layer Type: @layer.Item1 </p>
+                            @switch (layer.Item1)
+                            {
                                 case "dense":
                                     <p class="mb-0">Neurons: @layer.Item2</p>
                                     break;
@@ -62,9 +64,9 @@
                         </div>
                     }
                 }
-
-                <input type="submit" class="form-control" id="mHiddenLayers3" value="Add Model" form="new_Model" />
-     
+            </div>
+            <div class="col-12">
+                <input type="submit" class="form-control" value="Add Model" form="new_Model" />
             </div>
         </div>
     </div>
