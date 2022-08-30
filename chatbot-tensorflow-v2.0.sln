@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PythonInterpreter", "Python
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{09A28ACC-47C1-406F-BC94-E669857A5948}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatBotTesting", "..\ChatBotTesting\ChatBotTesting.csproj", "{AE77242B-AF08-47FE-AB2D-0581A855672E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBotTesting", "ChatBotTesting\ChatBotTesting.csproj", "{D7704D8B-E72A-400E-AF1B-1D4715933241}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +33,10 @@ Global
 		{09A28ACC-47C1-406F-BC94-E669857A5948}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09A28ACC-47C1-406F-BC94-E669857A5948}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09A28ACC-47C1-406F-BC94-E669857A5948}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE77242B-AF08-47FE-AB2D-0581A855672E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE77242B-AF08-47FE-AB2D-0581A855672E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE77242B-AF08-47FE-AB2D-0581A855672E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE77242B-AF08-47FE-AB2D-0581A855672E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7704D8B-E72A-400E-AF1B-1D4715933241}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7704D8B-E72A-400E-AF1B-1D4715933241}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7704D8B-E72A-400E-AF1B-1D4715933241}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7704D8B-E72A-400E-AF1B-1D4715933241}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
