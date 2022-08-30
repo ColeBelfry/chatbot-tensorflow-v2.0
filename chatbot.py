@@ -90,9 +90,12 @@ def createNewModel(model_name, num_epochs, batch_size_val, learning_rate_val, hi
                 model.add(tf.keras.layers.Dropout(rate=layer[1]))
     else:
         # Default layers
-        model.add(tf.keras.layers.Dense(8))
-        model.add(tf.keras.layers.Dense(8))
-        model.add(tf.keras.layers.Dense(8))
+        model.add(tf.keras.layers.Dense(12))
+        model.add(tf.keras.layers.Dense(12))
+        model.add(tf.keras.layers.Dense(12))
+        model.add(tf.keras.layers.Dense(12))
+        model.add(tf.keras.layers.Dense(12))
+        model.add(tf.keras.layers.Dense(12))
     model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
 
     trainNew(model, model_name, num_epochs, batch_size_val, learning_rate_val)
@@ -153,7 +156,7 @@ def chat(model_name, user_input):
 
     results_index = numpy.argmax(results)
     intent = labels[results_index]
-    if results[results_index] > 0.9:
+    if results[results_index] > 0.4:
         for tg in data["intents"]:
             if tg["intent"] == intent:
                 responses = tg["responses"]
@@ -167,35 +170,59 @@ def chat(model_name, user_input):
 #createNewModel("bob", 500, 50, 0.001, hiddenlayers)
 #The current active model (pass in the name from the UI)
 #print(chat("bob", "Hello"))
+try:
+    if (sys.argv[1] == "chat"):
+        # Looking to chat, check if we have the right ammount of arguments
 
-if (sys.argv[1] == "chat"):
-    # Looking to chat, check if we have the right ammount of arguments
-    if (len(sys.argv) == 4):
-        print(chat(sys.argv[2], sys.argv[3]))
+        if (len(sys.argv) >= 4):
+            print(chat(sys.argv[2], " ".join(sys.argv[3:])))
+        else:
+            print("To few arugments were passed for function chat")
+    elif (sys.argv[1] == "new_model"):
+        # Looking to create a new model, did we pass hidden layers or not?
+        if (len(sys.argv) == 6):
+            print(createNewModel(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], []))
+        elif (len(sys.argv) >= 8):
+            # Convert the hidden layer strings to tuples for easy use in adding them to the model
+            full_tuple = sys.argv[6:]
+            first_half = full_tuple[:int(len(full_tuple)/2)]
+            last_half = full_tuple[int(len(full_tuple)/2):]
+            real_tuple = []
+            # Combine both halves into a single tuple that gets appended
+            for (first, last) in zip(first_half, last_half):
+                real_tuple.append((first, last))
+            print(createNewModel(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], real_tuple))
+        else:
+            print("To few arugments were passed for function createNewModel")
+    elif (sys.argv[1] == "train"):
+        # Looking to train a model, check if we have the right ammount of arguments
+        if (len(sys.argv) == 6):
+            print(train(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5]))
+        else:
+            print("To few or to many arugments were passed for function train")
     else:
-        print("To few or to many arugments were passed for function chat")
-elif (sys.argv[1] == "new_model"):
-    # Looking to create a new model, did we pass hidden layers or not?
-    if (len(sys.argv) == 6):
-        print(createNewModel(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], []))
-    elif (len(sys.argv) >= 8):
-        # Convert the hidden layer strings to tuples for easy use in adding them to the model
-        full_tuple = sys.argv[6:]
-        first_half = full_tuple[:int(len(full_tuple)/2)]
-        last_half = full_tuple[int(len(full_tuple)/2):]
-        real_tuple = []
-        # Combine both halves into a single tuple that gets appended
-        for (first, last) in zip(first_half, last_half):
-            real_tuple.append((first, last))
-        print(createNewModel(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], real_tuple))
-    else:
-        print("To few arugments were passed for function createNewModel")
-elif (sys.argv[1] == "train"):
-    # Looking to train a model, check if we have the right ammount of arguments
-    if (len(sys.argv) == 6):
-        print(train(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5]))
-    else:
-        print("To few or to many arugments were passed for function train")
-else:
-    # Unable to recognize the inputted function request identifier
-    print(f"{sys.argv[1]} is not a valid function in chatbot.")
+        # Unable to recognize the inputted function request identifier
+        print(f"{sys.argv[1]} is not a valid function in chatbot.")
+
+        ##This is a test to make a new model
+    
+        ###The current active model (pass in the name from the UI)
+        #print(chat("bob", "Hello"))
+except:
+    try:
+        userinput = input("Enter message:\n")
+
+        while(userinput != "exit"):
+            #hiddenlayers = ["dense", "dense", "dense"]
+            #createNewModel("bob", 500, 50, 0.001, hiddenlayers)
+            print(chat("bob", userinput))
+            userinput = input("Enter message:\n")
+    except :
+        pass
+
+    
+   
+
+
+
+
