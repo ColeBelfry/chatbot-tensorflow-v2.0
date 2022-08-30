@@ -1,4 +1,6 @@
-﻿@*
+﻿
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -6,37 +8,59 @@
 @model ChatListViewModel
 @Html.Partial("_Sidebar")
 <main role="main" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    <div class="container-fluid">
-        <div id="chat_container">
-            <div class="card">
+    <div class="container-fluid align-content-center">
+        <div id="chat_container inline_block">
+            <div class="card chat_card">
                 <header class="card-header header-title">
                     <p class="card-header-title">ChatBot</p>
                 </header>
-                <div class="card-content">
+                <div class="card-content overflow-scroll chat_space">
                     @if (Model.ChatPairs != null) 
                     {
                         @foreach (var chat_pair in Model.ChatPairs)
                         {
                             <div class="row">
                                 <div class="col align-self-start">
-                                    <p>User: @chat_pair.userInput</p>
+                                    <small class="text-muted">User @DateTime.Now.ToShortDateString()</small>
+                                    <br/>
+                                    <p class="user_textbox rounded-3">@chat_pair.userInput</p>
                                 </div>
                                 <div class="col"></div>
                             </div>
                             <div class="row">
                                 <div class="col"></div>
                                 <div class="col align-self-end">
-                                    <p class="text">Bot: @chat_pair.botResponse</p>
+                                    <small class="text-muted">Bot @DateTime.Now.ToShortDateString()</small>
+                                    <br/>
+                                    <p class="bot_textbox rounded-3">Bot: @chat_pair.botResponse</p>
                                 </div>
                             </div>
                         }
                     }  
                 </div>
+                <div class="card-footer">
+                    <form name="message" action="/Chat/ChatWindow" method="post" class="p-4 p-md-5 rounded-3 bg-light align-content-center">
+                        <input class="form-control" name="usermsg" type="text" id="usermsg" />
+                        <input class="form-control" name="submitmsg" type="submit" id="submitmsg" value="Send" />
+                    </form>
+                </div>
             </div>
         </div>
-        <form name="message" action="/Chat/ChatWindow" method="post" class="p-4 p-md-5 rounded-3 bg-light align-content-center">
-            <input name="usermsg" type="text" id="usermsg" />
-            <input name="submitmsg" type="submit" id="submitmsg" value="Send" />
-        </form>
+        @*<div class="container-fluid inline_block">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Select Chat Bot
+                </button>
+                @*<form name="BotSelect" action="/Chat/ChatWindow method="post">
+                    <ul class="dropdown-menu">
+                        @foreach (var bot in Model.ChatPairs)
+                        {
+                            <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="/Chat/ChangeModel/@bot.Name">@bot.Name</a>></li>
+                        }
+                    </ul>
+                </form>*@
+            
+            </div>
+        </div>
     </div>
 </main>
