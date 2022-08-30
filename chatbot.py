@@ -111,16 +111,18 @@ def train(model_name, num_epochs, batch_size_val, learning_rate_val):
     opt = keras.optimizers.Adam(learning_rate = learning_rate_val)
     model.compile(optimizer=opt,
                   loss="categorical_crossentropy", metrics=["accuracy"])
-    model.fit(training, output, epochs=num_epochs, batch_size=batch_size_val)
+    model.fit(training, output, epochs=num_epochs, batch_size=batch_size_val, verbose=0)
     model.save('KerasModels\\' + model_name + '.h5')
+    return "Model was trained successfully..."
 
 def trainNew(model, model_name, num_epochs, batch_size_val, learning_rate_val):
     #sets the learning rate for the adam optimizer
     opt = keras.optimizers.Adam(learning_rate = learning_rate_val)
     model.compile(optimizer=opt,
                   loss="categorical_crossentropy", metrics=["accuracy"])
-    model.fit(training, output, epochs=num_epochs, batch_size=batch_size_val)
+    model.fit(training, output, epochs=num_epochs, batch_size=batch_size_val, verbose=0)
     model.save('KerasModels\\' + model_name + '.h5')
+    return "New model trained and saved successfully..."
 
 def loadModel(model_name):
     try:
@@ -164,7 +166,7 @@ def chat(model_name, user_input):
 
 
 #This is a test to make a new model
-#hiddenlayers = ["dense", "dense", "dense"]
+#hiddenlayers = [("dense", 8), ("dense", 8), ("dense", 8)]
 #createNewModel("bob", 500, 50, 0.001, hiddenlayers)
 #The current active model (pass in the name from the UI)
 #print(chat("bob", "Hello"))
@@ -179,7 +181,7 @@ try:
     elif (sys.argv[1] == "new_model"):
         # Looking to create a new model, did we pass hidden layers or not?
         if (len(sys.argv) == 6):
-            print(createNewModel(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], []))
+            print(createNewModel(sys.argv[2], int(sys.argv[3]), int(sys.argv[4]), float(sys.argv[5]), []))
         elif (len(sys.argv) >= 8):
             # Convert the hidden layer strings to tuples for easy use in adding them to the model
             full_tuple = sys.argv[6:]
@@ -189,13 +191,13 @@ try:
             # Combine both halves into a single tuple that gets appended
             for (first, last) in zip(first_half, last_half):
                 real_tuple.append((first, last))
-            print(createNewModel(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], real_tuple))
+            print(createNewModel(sys.argv[2], int(sys.argv[3]), int(sys.argv[4]), float(sys.argv[5]), real_tuple))
         else:
             print("To few arugments were passed for function createNewModel")
     elif (sys.argv[1] == "train"):
         # Looking to train a model, check if we have the right ammount of arguments
         if (len(sys.argv) == 6):
-            print(train(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5]))
+            print(train(sys.argv[2], int(sys.argv[3]), int(sys.argv[4]), float(sys.argv[5])))
         else:
             print("To few or to many arugments were passed for function train")
     else:
@@ -206,7 +208,8 @@ try:
     
         ###The current active model (pass in the name from the UI)
         #print(chat("bob", "Hello"))
-except:
+except Exception as e:
+    print(e)
     try:
         userinput = input("Enter message:\n")
 
