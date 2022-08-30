@@ -12,6 +12,8 @@ namespace DAL.Data
 		public static void Initialize(ChatBotContext context)
 		{
 			context.Database.EnsureCreated();
+
+			SetupChatBots(context);
 		}
 
 		public static void SetupChatBots(ChatBotContext context)
@@ -29,12 +31,24 @@ namespace DAL.Data
 					Epochs = 1000,
 					BatchSize = 500,
 					LearingRate = 0.001,
-					HiddenLayers = new List<(string, int)>
+					HiddenLayers = new List<HiddenLayer>
 					{
-						("dense", 8),
-						("dense", 8),
-						("dense", 8)
-					}
+						new HiddenLayer()
+						{
+							LayerType = "dense",
+							LayerValue = 8
+						},
+                        new HiddenLayer()
+                        {
+                            LayerType = "dense",
+                            LayerValue = 8
+                        },
+                        new HiddenLayer()
+                        {
+                            LayerType = "dense",
+                            LayerValue = 8
+                        }
+                    }
 
 				},
 
@@ -44,12 +58,24 @@ namespace DAL.Data
 					Epochs = 100,
 					BatchSize = 25,
 					LearingRate = 0.001,
-					HiddenLayers = new List<(string, int)>
+					HiddenLayers = new List<HiddenLayer>
 					{
-						("dense", 8),
-						("dense", 8),
-						("dense", 8)
-					}
+                        new HiddenLayer()
+                        {
+                            LayerType = "dense",
+                            LayerValue = 8
+                        },
+                        new HiddenLayer()
+                        {
+                            LayerType = "dense",
+                            LayerValue = 8
+                        },
+                        new HiddenLayer()
+                        {
+                            LayerType = "dense",
+                            LayerValue = 8
+                        }
+                    }
 				}
 			};
 

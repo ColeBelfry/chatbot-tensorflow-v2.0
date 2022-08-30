@@ -26,6 +26,7 @@ namespace chatbot_website.Controllers
         }
         public IActionResult ChatWindow()
         {
+            chatModel.Bots.AddRange(dal.GetAllChatBots());
             return View(chatModel);
         }
 

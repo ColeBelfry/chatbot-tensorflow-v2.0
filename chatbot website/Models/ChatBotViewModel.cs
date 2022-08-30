@@ -1,4 +1,6 @@
-﻿namespace chatbot_website.Models
+﻿using DAL.Models;
+
+namespace chatbot_website.Models
 {
     public class ChatBotViewModel
     {
@@ -6,11 +8,11 @@
         public int Epochs { get; set; }
         public int BatchSize { get; set; }
         public int LearningRate { get; set; }
-        public List<(string, int)> HiddenLayers { get; set; }
+        public List<HiddenLayer> HiddenLayers { get; set; }
 
         public ChatBotViewModel()
         {
-            HiddenLayers = new List<(string, int)>();
+            HiddenLayers = new List<HiddenLayer>();
         }
     }
 }

@@ -56,3 +56,5 @@ PythonInterpreter/obj/PythonInterpreter.csproj.nuget.g.props
 PythonInterpreter/obj/Debug/net6.0/ref/PythonInterpreter.dll
 PythonInterpreter/obj/Debug/net6.0/refint/PythonInterpreter.dll
 *.targets
+.vs/chatbot-tensorflow-v2.0/v17/TestStore/0/000.testlog
+.vs/chatbot-tensorflow-v2.0/v17/TestStore/0/testlog.manifest
