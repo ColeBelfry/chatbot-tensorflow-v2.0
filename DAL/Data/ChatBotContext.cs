@@ -12,6 +12,6 @@ namespace DAL.Data
 	{
 		public ChatBotContext(DbContextOptions<ChatBotContext> options) : base(options) { }
 
-		public DbSet<ChatBot> Bots { get; set; }
+        public DbSet<ChatBot> Bots { get; set; }
 	}
 }

@@ -13,6 +13,6 @@ namespace DAL.Models
 		public int Epochs { get; set; }
 		public int BatchSize { get; set; }
 		public double LearingRate { get; set; }
-		public List<(string, int)> HiddenLayers { get; set; }
+		public List<HiddenLayer> HiddenLayers { get; set; }
 	}
 }
