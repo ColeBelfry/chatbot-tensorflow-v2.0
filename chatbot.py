@@ -172,6 +172,7 @@ def chat(model_name, user_input):
 #createNewModel("bob", 500, 50, 0.001, hiddenlayers)
 #The current active model (pass in the name from the UI)
 #print(chat("bob", "Hello"))
+#hi
 try:
     if (sys.argv[1] == "chat"):
         # Looking to chat, check if we have the right ammount of arguments
