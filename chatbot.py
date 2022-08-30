@@ -7,6 +7,7 @@
 # nltk.download('punkt')
 # run this command in python console to download punkt
 
+from unittest import result
 import numpy
 import tensorflow as tf
 from tensorflow import keras
@@ -90,12 +91,14 @@ def createNewModel(model_name, num_epochs, batch_size_val, learning_rate_val, hi
                 model.add(tf.keras.layers.Dropout(rate=layer[1]))
     else:
         # Default layers
-        model.add(tf.keras.layers.Dense(12))
-        model.add(tf.keras.layers.Dense(12))
-        model.add(tf.keras.layers.Dense(12))
-        model.add(tf.keras.layers.Dense(12))
-        model.add(tf.keras.layers.Dense(12))
-        model.add(tf.keras.layers.Dense(12))
+        
+        model.add(tf.keras.layers.Dense(15))
+        model.add(tf.keras.layers.Dense(15))
+        model.add(tf.keras.layers.Dense(15))
+        model.add(tf.keras.layers.Dense(15))
+        model.add(tf.keras.layers.Dense(15))
+        model.add(tf.keras.layers.Dense(15))
+        model.add(tf.keras.layers.Dense(15))
     model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
 
     trainNew(model, model_name, num_epochs, batch_size_val, learning_rate_val)
@@ -156,7 +159,8 @@ def chat(model_name, user_input):
 
     results_index = numpy.argmax(results)
     intent = labels[results_index]
-    if results[results_index] > 0.4:
+    print("Confidence:" + str(results[results_index]))
+    if results[results_index] > 0.42:
         for tg in data["intents"]:
             if tg["intent"] == intent:
                 responses = tg["responses"]
@@ -170,6 +174,7 @@ def chat(model_name, user_input):
 #train("bob", 500, 50, 0.001)
 #The current active model (pass in the name from the UI)
 #print(chat("bob", "Hello"))
+#hi
 try:
     if (sys.argv[1] == "chat"):
         # Looking to chat, check if we have the right ammount of arguments
@@ -213,8 +218,8 @@ except:
         userinput = input("Enter message:\n")
 
         while(userinput != "exit"):
-            #hiddenlayers = ["dense", "dense", "dense"]
-            #createNewModel("bob", 500, 50, 0.001, hiddenlayers)
+            hiddenlayers = ["dense", "dense", "dense"]
+            createNewModel("bob", 900, 50, 0.001, hiddenlayers)
             print(chat("bob", userinput))
             userinput = input("Enter message:\n")
     except :
