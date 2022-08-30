@@ -32,7 +32,7 @@
                                 <div class="col align-self-end">
                                     <small class="text-muted">Bot @DateTime.Now.ToShortDateString()</small>
                                     <br/>
-                                    <p class="bot_textbox rounded-3">Bot: @chat_pair.botResponse</p>
+                                    <p class="bot_textbox rounded-3">@Model.CurrentBot: @chat_pair.botResponse</p>
                                 </div>
                             </div>
                         }
@@ -57,7 +57,7 @@
                     <ul class="dropdown-menu">
                         @foreach (var bot in Model.Bots)
                         {
-                            <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="/Chat/ChangeModel/@bot.Name">@bot.Name</a>></li>
+                            <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="/Chat/ChangeModel/@bot.Name">@bot.Name</a></li>
                         }
                     </ul>
                 </form>

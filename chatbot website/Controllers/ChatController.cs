@@ -27,6 +27,7 @@ namespace chatbot_website.Controllers
         public IActionResult ChatWindow()
         {
             currentBot = "bob";
+            chatModel.CurrentBot = "bob";
             chatModel.Bots.AddRange(dal.GetAllChatBots());
             return View(chatModel);
         }
@@ -34,13 +35,26 @@ namespace chatbot_website.Controllers
 		public IActionResult ChangeModel(string botName)
 		{
             currentBot = botName;
+            chatModel.CurrentBot = botName;
 			return View("ChatWindow",chatModel);
 		}
 
 		[HttpPost]
         public IActionResult ChatWindow(string usermsg)
         {
-            string botRes = interpreter.ExecuteChatFunction(currentBot, usermsg);
+            string botResPy = interpreter.ExecuteChatFunction(currentBot, usermsg);
+            botResPy = botResPy.Replace("\r\n", " ");
+            string[] resSplit = botResPy.Split(' ');
+			string botRes = "";
+			for (int i = 12; i < resSplit.Length; i++)
+            {
+                if(i == 12)
+                {
+                    botRes = resSplit[i];
+                }
+                botRes = botRes + " " + resSplit[i];
+            }
+            
             chatModel.ChatPairs.Add((usermsg, botRes));
             return View(chatModel);
         }
@@ -114,6 +128,9 @@ namespace chatbot_website.Controllers
                 val.Add(layer.LayerValue);
             }
             interpreter.ExecuteCreateModelFunction(newChatBot.Name, newChatBot.Epochs, newChatBot.BatchSize, newChatBot.LearingRate, type.ToArray(), val.ToArray());
+            chatModel.Bots.Add(newChatBot);
+            currentBot = newChatBot.Name;
+            chatModel.CurrentBot = currentBot;
 			return View("ChatWindow", chatModel);
 		}
         [HttpPost]

@@ -6,6 +6,7 @@ namespace chatbot_website.Models
 	{
 		public List<(string userInput, string botResponse)> ChatPairs { get; set; }
 		public List<ChatBot> Bots { get; set; }
+		public string CurrentBot { get; set; }
 
 		public ChatListViewModel()
 		{

@@ -170,8 +170,8 @@ def chat(model_name, user_input):
 
 
 #This is a test to make a new model
-#hiddenlayers = [("dense", 8), ("dense", 8), ("dense", 8)]
-#train("bob", 500, 50, 0.001)
+hiddenlayers = [("dense", 8), ("dense", 8), ("dense", 8)]
+createNewModel("default", 1000, 500, 0.001, hiddenlayers)
 #The current active model (pass in the name from the UI)
 #print(chat("bob", "Hello"))
 #hi
@@ -218,8 +218,8 @@ except:
         userinput = input("Enter message:\n")
 
         while(userinput != "exit"):
-            hiddenlayers = ["dense", "dense", "dense"]
-            createNewModel("bob", 900, 50, 0.001, hiddenlayers)
+            #hiddenlayers = ["dense", "dense", "dense"]
+            #createNewModel("bob", 900, 50, 0.001, hiddenlayers)
             print(chat("bob", userinput))
             userinput = input("Enter message:\n")
     except :

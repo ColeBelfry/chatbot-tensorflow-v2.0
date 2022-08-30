@@ -55,9 +55,9 @@ namespace DAL.Data
 
 				new ChatBot()
 				{
-					Name = "John",
-					Epochs = 100,
-					BatchSize = 25,
+					Name = "bob",
+					Epochs = 900,
+					BatchSize = 50,
 					LearingRate = 0.001,
 					HiddenLayers = new List<HiddenLayer>
 					{
