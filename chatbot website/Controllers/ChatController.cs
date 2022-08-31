@@ -28,7 +28,7 @@ namespace chatbot_website.Controllers
         {
             currentBot = "bob";
             chatModel.CurrentBot = "bob";
-            chatModel.Bots.AddRange(dal.GetAllChatBots());
+            chatModel.Bots = dal.GetAllChatBots();
             return View(chatModel);
         }
 
