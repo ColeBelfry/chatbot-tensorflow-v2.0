@@ -32,10 +32,10 @@ namespace chatbot_website.Controllers
             return View(chatModel);
         }
 
-		public IActionResult ChangeModel(string botName)
+		public IActionResult ChangeModel(string id)
 		{
-            currentBot = botName;
-            chatModel.CurrentBot = botName;
+            currentBot = id;
+            chatModel.CurrentBot = id;
 			return View("ChatWindow",chatModel);
 		}
 
