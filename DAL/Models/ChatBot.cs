@@ -14,5 +14,15 @@ namespace DAL.Models
 		public int BatchSize { get; set; }
 		public double LearingRate { get; set; }
 		public List<HiddenLayer> HiddenLayers { get; set; }
+
+		public ChatBot() { }
+		public ChatBot(string name, int epochs, int batchSize, double learingRate, List<HiddenLayer> hiddenLayers)
+		{
+			Name = name;
+			Epochs = epochs;
+			BatchSize = batchSize;
+			LearingRate = learingRate;
+			HiddenLayers = hiddenLayers;
+		}
 	}
 }

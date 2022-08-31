@@ -13,5 +13,13 @@ namespace DAL.Models
         public List<string> patterns { get; set; }
 
         public List<string> responses { get; set; }
+
+        public Intent() { }
+        public Intent(string intent, List<string> patterns, List<string> responses)
+        {
+            this.intent = intent;
+            this.patterns = patterns;
+            this.responses = responses;
+        }
     }
 }
