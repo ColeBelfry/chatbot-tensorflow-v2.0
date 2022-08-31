@@ -32,28 +32,36 @@ namespace chatbot_website.Controllers
             return View(chatModel);
         }
 
-		public IActionResult ChangeModel(string id)
-		{
+
+        public IActionResult ChangeModel(string id)
+        {
+            chatModel.ChatPairs.Clear();
             currentBot = id;
             chatModel.CurrentBot = id;
-			return View("ChatWindow",chatModel);
-		}
+            return View("ChatWindow", chatModel);
+        }
 
-		[HttpPost]
+
+
+
+
+        [HttpPost]
         public IActionResult ChatWindow(string usermsg)
         {
             string botResPy = interpreter.ExecuteChatFunction(currentBot, usermsg);
+            //the following portion chops of the default info for the bot response and properly builds a string to return
             botResPy = botResPy.Replace("\r\n", " ");
             string[] resSplit = botResPy.Split(' ');
 			string botRes = "";
-			for (int i = 12; i < resSplit.Length; i++)
+			for (int i = 0; i < resSplit.Length; i++)
             {
-                if(i == 12)
+                if(i >= 11)
                 {
-                    botRes = resSplit[i];
+                    botRes += resSplit[i] + " ";
                 }
-                botRes = botRes + " " + resSplit[i];
+                
             }
+            botRes = botRes.TrimEnd();
             
             chatModel.ChatPairs.Add((usermsg, botRes));
             return View(chatModel);
@@ -63,6 +71,12 @@ namespace chatbot_website.Controllers
         {
             return View(intentModel);
         }
+
+        public IActionResult RemoveModel()
+        {
+            return View(chatModel);
+        }
+        
 
         [HttpPost]
 		public IActionResult NewIntent(string intent_name)
@@ -134,10 +148,14 @@ namespace chatbot_website.Controllers
 			return View("ChatWindow", chatModel);
 		}
         [HttpPost]
-        public IActionResult RemoveModel(int id)
+        public IActionResult RemoveModel(string botname)
         {
-            dal.RemoveChatBot(id);
-            return View("ChatView", chatModel);
+            dal.RemoveChatBot(botname);
+            chatModel.Bots = dal.GetAllChatBots();
+            return View("ChatWindow", chatModel);
 		}
+
+
+        
 	}
 }

@@ -7,7 +7,6 @@
 # nltk.download('punkt')
 # run this command in python console to download punkt
 
-from unittest import result
 import numpy
 import tensorflow as tf
 from tensorflow import keras
@@ -91,8 +90,6 @@ def createNewModel(model_name, num_epochs, batch_size_val, learning_rate_val, hi
                 model.add(tf.keras.layers.Dropout(rate=layer[1]))
     else:
         # Default layers
-        
-        model.add(tf.keras.layers.Dense(15))
         model.add(tf.keras.layers.Dense(15))
         model.add(tf.keras.layers.Dense(15))
         model.add(tf.keras.layers.Dense(15))
@@ -191,10 +188,9 @@ def debugchat(model_name, user_input):
 
 #This is a test to make a new model
 #hiddenlayers = [("dense", 8), ("dense", 8), ("dense", 8)]
-#createNewModel("default", 1000, 500, 0.001, hiddenlayers)
+#createNewModel("bob", 500, 50, 0.001, hiddenlayers)
 #The current active model (pass in the name from the UI)
 #print(chat("bob", "Hello"))
-#hi
 try:
     if (sys.argv[1] == "chat"):
         # Looking to chat, check if we have the right ammount of arguments
@@ -241,7 +237,7 @@ except Exception as e:
         while(userinput != "exit"):
             #this doesnt remake anything
             hiddenlayers = ["dense", "dense", "dense"]
-            createNewModel("bob", 900, 50, 0.001, hiddenlayers)
+            createNewModel("bob", 1100, 50, 0.001, hiddenlayers)
             print(debugchat("bob", userinput))
             userinput = input("Enter message:\n")
     except :

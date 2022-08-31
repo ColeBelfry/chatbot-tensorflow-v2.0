@@ -1,0 +1,27 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model ChatListViewModel
+@Html.Partial("_Sidebar")
+<main role="main" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="p-4 p-md-5 rounded-3 bg-light align-content-center">
+        <h3>List of Bot Names</h3>
+    <ul class="bot-List">
+                    @foreach (var bot in Model.Bots)
+                    {
+                        <li class="bot-list-item">@bot.Name</li>
+                    }
+                </ul>
+
+                <form id="remove_model" action="RemoveModel" method="post"></form>
+                <div class="col-md-6">
+                <label class="form-label" for="mBotName">Name of Bot</label>
+                <input name="botname" type="text" class="form-control" id="mBotName" form="remove_model" placeholder="Ex:bob" required />
+            </div>
+
+                <div class="col-12">
+                <input type="submit" class="form-control" value="Remove Model" form="remove_model" />
+            </div>
+            </div>
+</main>

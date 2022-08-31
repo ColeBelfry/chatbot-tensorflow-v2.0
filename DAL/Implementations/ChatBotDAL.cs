@@ -21,6 +21,7 @@ namespace DAL.Implementations
 		public void AddChatBot(ChatBot chatBot)
 		{
 			context.Bots.Add(chatBot);
+			context.SaveChanges();
 		}
 
 		public List<ChatBot> GetAllChatBots()
@@ -41,10 +42,13 @@ namespace DAL.Implementations
 			return bot;
 		}
 
-		public void RemoveChatBot(int id)
+		public void RemoveChatBot(string name)
 		{
-			var bot = context.Bots.Where(b => b.Id == id).First();
-			File.Delete("./KerasModels/" + bot.Name + ".h5");
+
+			var bot = context.Bots.Where(b => b.Name == name).First();
+			File.Delete("../KerasModels/" + bot.Name + ".h5");
+			bot.HiddenLayers = context.HiddenLayers.Where(hl => hl.ChatbotId.Equals(bot.Id)).ToList();
+			context.HiddenLayers.RemoveRange(bot.HiddenLayers);
 			context.Bots.Remove(bot);
 			context.SaveChanges();
 			
