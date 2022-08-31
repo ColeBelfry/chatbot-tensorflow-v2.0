@@ -126,9 +126,13 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
-    padding-top: 50px;
-    padding-bottom: 20px;
+    overflow-x:hidden;
+    height: 100%;
+    background-color: #508991;
+    display: flex;
+    flex-direction: column;
+    /*margin-bottom: 60px;*/
+    /*overflow: hidden;*/ /* Hide scrollbars */
 }
 
 sidebar {
@@ -176,4 +180,146 @@ sidebar {
 
 .layer_box {
     height: 280px;
+}
+/*nav{
+    top: 0px;
+    background-color: #004346;
+    color:#fff;
+}*/
+
+/*.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}*/
+
+
+
+/** {
+    outline: 1px solid #f00 !important;
+}*/
+
+/*.slide-content .scroller {
+    width: 1024px;
+}*/
+
+#navsidebar {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.sidebar-nav-item {
+    flex-grow: 1;
+}
+
+
+
+/*flushes the head(navigation) with the top of the browser*/
+
+.mb-auto {
+    top: 0px;
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+/*the following is needed to keep footer on bottom at all times, while not interrupting main display data*/
+#foot-container {
+    text-align:left;
+    bottom: 0;
+    min-height: 80px;
+    margin-top: 15px;
+    position: absolute;
+}
+
+footer {
+    /*top:100px;*/
+    text-align:left;
+    background-color: #2a2b2c;
+    bottom: 0;
+    height: 45px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+#section1 {
+    flex: 0 1 auto;
+}
+
+#section2 {
+    min-height: 60px;
+    flex: 1 1 auto;
+}
+
+
+/*dropdown menu for bot selection*/
+
+/* The dropdown container */
+
+.title {
+    justify-content: center;
+    text-align: center;
+    flex-grow: 1;
+    height: 100%;
+    
+    justify-content: center;
+    text-decoration: none;
+    color: #75DDDD;
+}
+
+    .title a {
+        text-decoration: none;
+        justify-content: center;
+        text-align: center;
+        
+        height: 100%;
+        
+        justify-content: center;
+        color: #75DDDD;
+    }
+.title:hover{
+        background-color:#004346;
+        color: #6a6c6d;
+    }
+
+#main-navbar a {
+    height: 100%;
+    /*background-color: #75dddd;*/
+    /*color: #fff;*/
+}
+
+#main-navbar {
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-flow:row wrap;
+    height: 100%;
+    background-color: #172A3A;
+    font-size: 24px;
+    color: #fff;
+    padding: 0;
+    height: 49px;
+}
+
+    #main-navbar a::after {
+        color: #fff;
+    }
+
+    #main-navbar a::before {
+        color: #fff;
+    }
+.title-holder{
+    justify-content:center;
+    text-align: center;
+   flex-grow: 1;
+    height:100%;
+    background: #fff;
 }
