@@ -1,0 +1,56 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    // add the model
+}
+@model IntentViewModel
+@Html.Partial("_Sidebar")
+
+<main role="main" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <form id="new_intent" action="NewIntent" method="post"></form>
+    <form id="new_pattern" action="NewPattern" method="post"></form>
+    <form id="new_response" action="NewResponse" method="post"></form>
+    <div class="container p-4 p-md-5 rounded-3 bg-light align-content-center">
+        <div class="row g-3">
+            <div class="col-12">
+                <label class="form-label" for="ipattern">New Pattern:</label>
+                <input name="pattern" type="text" class="form-control" id="ipattern" form="new_pattern" required />
+                <input type="submit" form="new_pattern" value="Add Pattern"/>
+            </div>
+            <div class="col-12">
+                "patterns": [
+                @if(Model.Patterns.Count() > 0){
+                    foreach (var pattern in Model.Patterns)
+                    {
+                        <p class="mb-0">"@pattern",</p>
+                    }
+                }
+                ],
+            </div>
+            <div class="col-12">
+                <label class="form-label" for="iresponse">New Response:</label>
+                <input name="response" type="text" class="form-control" id="iresponse" form="new_response" required />
+                <input type="submit" form="new_response" value="Add Response"/>
+            </div>
+            <div class="col-12">
+                "responses": [
+                @{
+                    //this isn't done yet
+                }
+                @if(Model.Responses.Count() > 0){
+                    @foreach (var response in Model.Responses)
+                    {
+                        <p class="mb-0">"@response",</p>
+                    }
+                }
+                ],
+            </div>
+            <div class="col-12">
+                <label class="form-label" for="iIntent">New Intent:</label>
+                <input name="intent_name" type="text" class="form-control" id="iIntent" form="new_intent" placeholder="Ex: PoliteGreeting" required />
+                <input type="submit" form="new_intent" value="Add Intent" />
+            </div>
+        </div>
+    </div>    
+</main>
