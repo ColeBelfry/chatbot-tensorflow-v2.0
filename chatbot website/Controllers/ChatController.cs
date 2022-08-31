@@ -33,14 +33,15 @@ namespace chatbot_website.Controllers
         }
 
 
-
-
         public IActionResult ChangeModel(string id)
         {
             currentBot = id;
             chatModel.CurrentBot = id;
             return View("ChatWindow", chatModel);
         }
+
+
+
 
 
         [HttpPost]
