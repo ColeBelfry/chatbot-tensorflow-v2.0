@@ -150,7 +150,7 @@ namespace chatbot_website.Controllers
         public IActionResult RemoveModel(string botname)
         {
             dal.RemoveChatBot(botname);
-            return View("ChatView", chatModel);
+            return View("ChatWindow", chatModel);
 		}
 
 
