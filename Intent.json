@@ -41,11 +41,11 @@
         "It is Bella"
       ],
       "responses": [
-        "That\u0027s a nice name, How can I help?",
-        "Good! Hi \u003CHUMAN\u003E, how can I help you?",
-        "Cool! Hello \u003CHUMAN\u003E, what can I do for you?",
-        "OK! Hola \u003CHUMAN\u003E, how can I help you?",
-        "OK! hi \u003CHUMAN\u003E, what can I do for you?"
+        "That''s a nice name, How can I help?",
+        "Good! Hi, how can I help you?",
+        "Cool! Hello, what can I do for you?",
+        "OK! Hola, how can I help you?",
+        "OK! hi, what can I do for you?"
       ]
     },
     {
@@ -80,49 +80,31 @@
         "Great thanks! This is Bella",
         "Great thanks! I am Bella",
         "Great thanks! It is Bella",
-        "I\u0027m doing good",
+        "I'm doing good",
         "Im doing good",
         "I am doing good",
-        "I\u0027m doing great",
+        "I'm doing great",
         "Im doing great",
         "I am doing great",
-        "I\u0027m alright",
+        "I'm alright",
         "I am alright",
         "Im alright",
-        "I\u0027m fantastic",
+        "I'm fantastic",
         "I am fantastic",
         "Im fantastic"
       ],
       "responses": [
-        "Great! Hi \u003CHUMAN\u003E! How can I help?",
-        "Good! Hi \u003CHUMAN\u003E, how can I help you?",
-        "Cool! Hello \u003CHUMAN\u003E, what can I do for you?",
-        "OK! Hola \u003CHUMAN\u003E, how can I help you?",
-        "OK! hi \u003CHUMAN\u003E, what can I do for you?"
-      ]
-    },
-    {
-      "intent": "CurrentHumanQuery",
-      "patterns": [
-        "What is my name?",
-        "What do you call me?",
-        "Who do you think I am?",
-        "What do you think I am?",
-        "Who are you talking to?",
-        "What name do you call me by?",
-        "Tell me my name"
-      ],
-      "responses": [
-        "You are \u003CHUMAN\u003E! How can I help?",
-        "Your name is  \u003CHUMAN\u003E, how can I help you?",
-        "They call you \u003CHUMAN\u003E, what can I do for you?",
-        "Your name is \u003CHUMAN\u003E, how can I help you?",
-        "\u003CHUMAN\u003E, what can I do for you?"
+        "Great! Hi! How can I help?",
+        "Good! Hi, how can I help you?",
+        "Cool! Hello, what can I do for you?",
+        "OK! Hola, how can I help you?",
+        "OK! hi, what can I do for you?"
       ]
     },
     {
       "intent": "NameQuery",
       "patterns": [
+        "Who are you?",
         "What is your name?",
         "What could I call you?",
         "What can I call you?",
@@ -617,6 +599,57 @@
         "I like to ride bikes! Not!",
         "I like to browse reddit.",
         "I like to talk with the user."
+      ]
+    },
+    {
+      "intent": "Favourite Color",
+      "patterns": [
+        "What is your favourite color?",
+        "What is your favorite color?",
+        "Tell me your favorite color?",
+        "Tell me your favourite color?",
+        "What color do you like best?"
+      ],
+      "responses": [
+        "Well, my favourite Color is a greanish blue, kinda like teal. What about yours?",
+        "I like teal. It's pretty. What's your favorite color?",
+        "It's teal, how about you?"
+      ]
+    },
+    {
+      "intent": "Favourite movie",
+      "patterns": [
+        "What is your favourite movie?",
+        "What is your favorite movie?",
+        "Tell me your favorite movie?",
+        "Tell me your favourite movie?"
+      ],
+      "responses": [
+        "Well, my favourite movie is 'Saving Private Ryan'. What about yours?"
+      ]
+    },
+    {
+      "intent": "Want a Fresca",
+      "patterns": [
+        "Want a fresca?"
+      ],
+      "responses": [
+        "Uhh, no thanks."
+      ]
+    },
+    {
+      "intent": "Occupation",
+      "patterns": [
+        "What do you do?",
+        "What is your job?",
+        "What is it that you do?",
+        "What is it that you do for a living?",
+        "What do you do for a living?",
+        "What is your occupation."
+      ],
+      "responses": [
+        "Well, I'm a chat bot. I usually talk to people all day. What do you do?",
+        "I talk to people for a living. What do you do?"
       ]
     }
   ]

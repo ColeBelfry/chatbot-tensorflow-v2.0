@@ -235,7 +235,7 @@ except Exception as e:
         while(userinput != "exit"):
             #this doesnt remake anything
             hiddenlayers = ["dense", "dense", "dense"]
-            createNewModel("bob", 900, 50, 0.001, hiddenlayers)
+            createNewModel("bob", 1100, 50, 0.001, hiddenlayers)
             print(debugchat("bob", userinput))
             userinput = input("Enter message:\n")
     except :
