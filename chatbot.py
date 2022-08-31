@@ -7,6 +7,7 @@
 # nltk.download('punkt')
 # run this command in python console to download punkt
 
+from unittest import result
 import numpy
 import tensorflow as tf
 from tensorflow import keras
@@ -86,8 +87,12 @@ def createNewModel(model_name, num_epochs, batch_size_val, learning_rate_val, hi
                 model.add(tf.keras.layers.Dense(layer[1]))
             elif layer[0] == "flatten":
                 model.add(tf.keras.layers.Flatten(layer[1]))
+            elif layer[0] == "dropout":
+                model.add(tf.keras.layers.Dropout(rate=layer[1]))
     else:
         # Default layers
+        
+        model.add(tf.keras.layers.Dense(15))
         model.add(tf.keras.layers.Dense(15))
         model.add(tf.keras.layers.Dense(15))
         model.add(tf.keras.layers.Dense(15))
@@ -96,7 +101,7 @@ def createNewModel(model_name, num_epochs, batch_size_val, learning_rate_val, hi
         model.add(tf.keras.layers.Dense(15))
     model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
 
-    trainNew(model, model_name, num_epochs, batch_size_val, learning_rate_val)
+    return trainNew(model, model_name, num_epochs, batch_size_val, learning_rate_val)
     # run this command to get the summary of the model
     # model.summary()
 
@@ -113,7 +118,7 @@ def train(model_name, num_epochs, batch_size_val, learning_rate_val):
                   loss="categorical_crossentropy", metrics=["accuracy"])
     model.fit(training, output, epochs=num_epochs, batch_size=batch_size_val, verbose=0)
     model.save('KerasModels\\' + model_name + '.h5')
-    return "Model was trained successfully..."
+    return f"{model_name} was trained successfully..."
 
 def trainNew(model, model_name, num_epochs, batch_size_val, learning_rate_val):
     #sets the learning rate for the adam optimizer
@@ -122,7 +127,7 @@ def trainNew(model, model_name, num_epochs, batch_size_val, learning_rate_val):
                   loss="categorical_crossentropy", metrics=["accuracy"])
     model.fit(training, output, epochs=num_epochs, batch_size=batch_size_val, verbose=0)
     model.save('KerasModels\\' + model_name + '.h5')
-    return "New model trained and saved successfully..."
+    return f"{model_name} is trained and saved successfully..."
 
 def loadModel(model_name):
     try:
@@ -186,9 +191,10 @@ def debugchat(model_name, user_input):
 
 #This is a test to make a new model
 #hiddenlayers = [("dense", 8), ("dense", 8), ("dense", 8)]
-#createNewModel("bob", 500, 50, 0.001, hiddenlayers)
+#createNewModel("default", 1000, 500, 0.001, hiddenlayers)
 #The current active model (pass in the name from the UI)
 #print(chat("bob", "Hello"))
+#hi
 try:
     if (sys.argv[1] == "chat"):
         # Looking to chat, check if we have the right ammount of arguments

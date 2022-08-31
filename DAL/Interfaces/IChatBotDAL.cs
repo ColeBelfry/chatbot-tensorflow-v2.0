@@ -13,6 +13,6 @@ namespace DAL.Interfaces
 		ChatBot GetChatBotById(int id);
 		ChatBot GetChatBotByName(string name);
 		void AddChatBot(ChatBot chatBot);
-		void RemoveChatBot(ChatBot chatBot);
+		void RemoveChatBot(int id);
 	}
 }

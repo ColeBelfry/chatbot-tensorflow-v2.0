@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using PythonInterpreter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace DAL.Data
 		public static void Initialize(ChatBotContext context)
 		{
 			context.Database.EnsureCreated();
+
+			SetupChatBots(context);
 		}
 
 		public static void SetupChatBots(ChatBotContext context)
@@ -20,7 +23,7 @@ namespace DAL.Data
 			{
 				return;
 			}
-
+			ToPython interpreter = new ToPython();
 			var ChatBots = new ChatBot[]
 			{
 				new ChatBot()
@@ -29,33 +32,65 @@ namespace DAL.Data
 					Epochs = 1000,
 					BatchSize = 500,
 					LearingRate = 0.001,
-					HiddenLayers = new List<(string, int)>
+					HiddenLayers = new List<HiddenLayer>
 					{
-						("dense", 8),
-						("dense", 8),
-						("dense", 8)
-					}
+						new HiddenLayer()
+						{
+							LayerType = "dense",
+							LayerValue = 8
+						},
+                        new HiddenLayer()
+                        {
+                            LayerType = "dense",
+                            LayerValue = 8
+                        },
+                        new HiddenLayer()
+                        {
+                            LayerType = "dense",
+                            LayerValue = 8
+                        }
+                    }
 
 				},
 
 				new ChatBot()
 				{
-					Name = "John",
-					Epochs = 100,
-					BatchSize = 25,
+					Name = "bob",
+					Epochs = 900,
+					BatchSize = 50,
 					LearingRate = 0.001,
-					HiddenLayers = new List<(string, int)>
+					HiddenLayers = new List<HiddenLayer>
 					{
-						("dense", 8),
-						("dense", 8),
-						("dense", 8)
-					}
+                        new HiddenLayer()
+                        {
+                            LayerType = "dense",
+                            LayerValue = 8
+                        },
+                        new HiddenLayer()
+                        {
+                            LayerType = "dense",
+                            LayerValue = 8
+                        },
+                        new HiddenLayer()
+                        {
+                            LayerType = "dense",
+                            LayerValue = 8
+                        }
+                    }
 				}
 			};
 
 			foreach(var bot in ChatBots)
 			{
+				var types = new List<string>();
+				var vals = new List<int>();
+				foreach(var hiddenLayer in bot.HiddenLayers)
+				{
+					types.Add(hiddenLayer.LayerType);
+					vals.Add(hiddenLayer.LayerValue);
+				}
 				context.Bots.Add(bot);
+				//interpreter.ExecuteCreateModelFunction(bot.Name, bot.Epochs, bot.BatchSize, bot.LearingRate, types.ToArray(), vals.ToArray());
 			}
 			context.SaveChanges();
 		}
