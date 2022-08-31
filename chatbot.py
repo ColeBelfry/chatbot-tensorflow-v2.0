@@ -88,12 +88,12 @@ def createNewModel(model_name, num_epochs, batch_size_val, learning_rate_val, hi
                 model.add(tf.keras.layers.Flatten(layer[1]))
     else:
         # Default layers
-        model.add(tf.keras.layers.Dense(12))
-        model.add(tf.keras.layers.Dense(12))
-        model.add(tf.keras.layers.Dense(12))
-        model.add(tf.keras.layers.Dense(12))
-        model.add(tf.keras.layers.Dense(12))
-        model.add(tf.keras.layers.Dense(12))
+        model.add(tf.keras.layers.Dense(15))
+        model.add(tf.keras.layers.Dense(15))
+        model.add(tf.keras.layers.Dense(15))
+        model.add(tf.keras.layers.Dense(15))
+        model.add(tf.keras.layers.Dense(15))
+        model.add(tf.keras.layers.Dense(15))
     model.add(tf.keras.layers.Dense(len(output[0]), activation="softmax"))
 
     trainNew(model, model_name, num_epochs, batch_size_val, learning_rate_val)
@@ -156,13 +156,32 @@ def chat(model_name, user_input):
 
     results_index = numpy.argmax(results)
     intent = labels[results_index]
-    if results[results_index] > 0.4:
+    if results[results_index] > 0.42:
         for tg in data["intents"]:
             if tg["intent"] == intent:
                 responses = tg["responses"]
         return f"{random.choice(responses)}"
     else:
         return f"{random.choice(invalid_responses)}"
+
+def debugchat(model_name, user_input):
+    # Valid model check, does it exist?
+    model = loadModel(model_name)
+    if (type(model) is str): return model
+    
+    results = model.predict([bag_of_words(user_input, words)])[0]
+
+    results_index = numpy.argmax(results)
+    intent = labels[results_index]
+    print("Confidence:" + str(results[results_index]))
+    if results[results_index] > 0.42:
+        for tg in data["intents"]:
+            if tg["intent"] == intent:
+                responses = tg["responses"]
+        return f"{random.choice(responses)}"
+    else:
+        return f"{random.choice(invalid_responses)}"
+
 
 
 #This is a test to make a new model
@@ -209,14 +228,15 @@ try:
         ###The current active model (pass in the name from the UI)
         #print(chat("bob", "Hello"))
 except Exception as e:
-    print(e)
+    #print(e)
     try:
         userinput = input("Enter message:\n")
 
         while(userinput != "exit"):
-            #hiddenlayers = ["dense", "dense", "dense"]
-            #createNewModel("bob", 500, 50, 0.001, hiddenlayers)
-            print(chat("bob", userinput))
+            #this doesnt remake anything
+            hiddenlayers = ["dense", "dense", "dense"]
+            createNewModel("bob", 900, 50, 0.001, hiddenlayers)
+            print(debugchat("bob", userinput))
             userinput = input("Enter message:\n")
     except :
         pass
