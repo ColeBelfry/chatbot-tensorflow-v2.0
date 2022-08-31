@@ -13,7 +13,14 @@ namespace chatbot_website.Controllers
             return View(chatModel);
         }
 
-        [HttpPost]
+		public IActionResult ChangeModel(string id)
+		{
+            currentBot = id;
+            chatModel.CurrentBot = id;
+			return View("ChatWindow",chatModel);
+		}
+
+		[HttpPost]
         public IActionResult ChatWindow(string usermsg)
         {
             string botRes = interpreter.ExecuteChatFunction("bob", usermsg);
