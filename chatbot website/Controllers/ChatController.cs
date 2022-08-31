@@ -71,6 +71,12 @@ namespace chatbot_website.Controllers
             return View(intentModel);
         }
 
+        public IActionResult RemoveModel()
+        {
+            return View(chatModel);
+        }
+        
+
         [HttpPost]
 		public IActionResult NewIntent(string intent_name)
 		{
@@ -141,9 +147,9 @@ namespace chatbot_website.Controllers
 			return View("ChatWindow", chatModel);
 		}
         [HttpPost]
-        public IActionResult RemoveModel(int id)
+        public IActionResult RemoveModel(string botname)
         {
-            dal.RemoveChatBot(id);
+            dal.RemoveChatBot(botname);
             return View("ChatView", chatModel);
 		}
 
