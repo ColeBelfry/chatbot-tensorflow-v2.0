@@ -35,6 +35,7 @@ namespace chatbot_website.Controllers
 
         public IActionResult ChangeModel(string id)
         {
+            chatModel.ChatPairs.Clear();
             currentBot = id;
             chatModel.CurrentBot = id;
             return View("ChatWindow", chatModel);
