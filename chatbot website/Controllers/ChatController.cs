@@ -32,28 +32,34 @@ namespace chatbot_website.Controllers
             return View(chatModel);
         }
 
-		public IActionResult ChangeModel(string botName)
-		{
-            currentBot = botName;
-            chatModel.CurrentBot = botName;
-			return View("ChatWindow",chatModel);
-		}
 
-		[HttpPost]
+
+
+        public IActionResult ChangeModel(string id)
+        {
+            currentBot = id;
+            chatModel.CurrentBot = id;
+            return View("ChatWindow", chatModel);
+        }
+
+
+        [HttpPost]
         public IActionResult ChatWindow(string usermsg)
         {
             string botResPy = interpreter.ExecuteChatFunction(currentBot, usermsg);
+            //the following portion chops of the default info for the bot response and properly builds a string to return
             botResPy = botResPy.Replace("\r\n", " ");
             string[] resSplit = botResPy.Split(' ');
 			string botRes = "";
-			for (int i = 12; i < resSplit.Length; i++)
+			for (int i = 0; i < resSplit.Length; i++)
             {
-                if(i == 12)
+                if(i >= 11)
                 {
-                    botRes = resSplit[i];
+                    botRes += resSplit[i] + " ";
                 }
-                botRes = botRes + " " + resSplit[i];
+                
             }
+            botRes = botRes.TrimEnd();
             
             chatModel.ChatPairs.Add((usermsg, botRes));
             return View(chatModel);
@@ -139,5 +145,8 @@ namespace chatbot_website.Controllers
             dal.RemoveChatBot(id);
             return View("ChatView", chatModel);
 		}
+
+
+        
 	}
 }

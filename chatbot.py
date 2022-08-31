@@ -7,7 +7,6 @@
 # nltk.download('punkt')
 # run this command in python console to download punkt
 
-from unittest import result
 import numpy
 import tensorflow as tf
 from tensorflow import keras
@@ -87,12 +86,8 @@ def createNewModel(model_name, num_epochs, batch_size_val, learning_rate_val, hi
                 model.add(tf.keras.layers.Dense(layer[1]))
             elif layer[0] == "flatten":
                 model.add(tf.keras.layers.Flatten(layer[1]))
-            elif layer[0] == "dropout":
-                model.add(tf.keras.layers.Dropout(rate=layer[1]))
     else:
         # Default layers
-        
-        model.add(tf.keras.layers.Dense(15))
         model.add(tf.keras.layers.Dense(15))
         model.add(tf.keras.layers.Dense(15))
         model.add(tf.keras.layers.Dense(15))
@@ -161,6 +156,23 @@ def chat(model_name, user_input):
 
     results_index = numpy.argmax(results)
     intent = labels[results_index]
+    if results[results_index] > 0.42:
+        for tg in data["intents"]:
+            if tg["intent"] == intent:
+                responses = tg["responses"]
+        return f"{random.choice(responses)}"
+    else:
+        return f"{random.choice(invalid_responses)}"
+
+def debugchat(model_name, user_input):
+    # Valid model check, does it exist?
+    model = loadModel(model_name)
+    if (type(model) is str): return model
+    
+    results = model.predict([bag_of_words(user_input, words)])[0]
+
+    results_index = numpy.argmax(results)
+    intent = labels[results_index]
     print("Confidence:" + str(results[results_index]))
     if results[results_index] > 0.42:
         for tg in data["intents"]:
@@ -171,12 +183,12 @@ def chat(model_name, user_input):
         return f"{random.choice(invalid_responses)}"
 
 
+
 #This is a test to make a new model
 #hiddenlayers = [("dense", 8), ("dense", 8), ("dense", 8)]
-#createNewModel("default", 1000, 500, 0.001, hiddenlayers)
+#createNewModel("bob", 500, 50, 0.001, hiddenlayers)
 #The current active model (pass in the name from the UI)
 #print(chat("bob", "Hello"))
-#hi
 try:
     if (sys.argv[1] == "chat"):
         # Looking to chat, check if we have the right ammount of arguments
@@ -216,21 +228,15 @@ try:
         ###The current active model (pass in the name from the UI)
         #print(chat("bob", "Hello"))
 except Exception as e:
-    print(e)
+    #print(e)
     try:
         userinput = input("Enter message:\n")
 
         while(userinput != "exit"):
-            #hiddenlayers = ["dense", "dense", "dense"]
-            #createNewModel("bob", 900, 50, 0.001, hiddenlayers)
-            print(chat("bob", userinput))
+            #this doesnt remake anything
+            hiddenlayers = ["dense", "dense", "dense"]
+            createNewModel("bob", 900, 50, 0.001, hiddenlayers)
+            print(debugchat("bob", userinput))
             userinput = input("Enter message:\n")
     except :
         pass
-
-    
-   
-
-
-
-
